@@ -1,24 +1,22 @@
-GOSPEL YOUTH MISSION CONTROL – VERSION 2 DEMO
+GOSPEL YOUTH MISSION CONTROL V3 – STRUKTURIERTER PROTOTYP
 
-ÖFFNEN
-1. ZIP entpacken.
-2. index.html im Browser öffnen.
+Enthalten:
+- Sommerfestival 2026 mit Untertitel Heaven Now
+- Tagesauswahl vom 29.08. bis 07.09.2026
+- Programmablauf mit Datum, Uhrzeit, Sprecher und Social-Media-Verantwortung
+- Contentplan mit Datum, Drehzeit, Veröffentlichungszeit, Verantwortlichem und Beispiel-Link
+- klare Buttons wie „Beispiel-Reel öffnen“
+- persönliche Aufgaben mit Beschreibung und Kalenderexport
+- Mitarbeiterübersicht mit Rollen
+- Instagram- und TikTok-Verlinkung
+- zeitabhängige Begrüßung
+- Dark/Light Mode
+- Demo-Login und Demo-Registrierung
+- Adminformulare für Content, Programm, Aufgaben und Mitarbeiter
 
-DEMO-FUNKTIONEN
-- Login mit Rollen-Auswahl
-- persönliches Dashboard
-- Light/Dark Mode
-- Tagesprogramm als Timeline
-- Aufgaben abhaken
-- Admin-Inhalte direkt auf der Seite ergänzen
-- Reel-/TikTok-/Instagram-Links als Karten
-- Termine als .ics für Apple Kalender, Google Kalender oder Outlook exportieren
-- lokale Speicherung im Browser
+Wichtig:
+Login, Accounts und Änderungen werden in dieser Version nur lokal im Browser gespeichert.
+Für sicheren Login und gemeinsame Daten aller Teammitglieder muss die App mit Supabase verbunden werden.
 
-WICHTIG
-Diese Version ist ein klickbarer Prototyp. Änderungen werden nur im Browser des jeweiligen Geräts gespeichert.
-Für gemeinsame Daten, echten Login und Bilder-Uploads wird als nächster Schritt Supabase verbunden.
-
-GITHUB PAGES
-Die Dateien index.html und logo.webp gemeinsam in dein Repository hochladen.
-Danach unter Settings > Pages > Deploy from a branch > main / root aktivieren.
+GitHub Pages:
+index.html und logo.webp in das bestehende Repository hochladen und die alten Dateien ersetzen.
