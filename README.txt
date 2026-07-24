@@ -1,22 +1,21 @@
-GOSPEL YOUTH MISSION CONTROL V3 – STRUKTURIERTER PROTOTYP
+Gospel Youth Mission Control V4 Beta
 
-Enthalten:
-- Sommerfestival 2026 mit Untertitel Heaven Now
-- Tagesauswahl vom 29.08. bis 07.09.2026
-- Programmablauf mit Datum, Uhrzeit, Sprecher und Social-Media-Verantwortung
-- Contentplan mit Datum, Drehzeit, Veröffentlichungszeit, Verantwortlichem und Beispiel-Link
-- klare Buttons wie „Beispiel-Reel öffnen“
-- persönliche Aufgaben mit Beschreibung und Kalenderexport
-- Mitarbeiterübersicht mit Rollen
-- Instagram- und TikTok-Verlinkung
+Getestete Funktionen:
+- Login/Registrierung lokal
 - zeitabhängige Begrüßung
 - Dark/Light Mode
-- Demo-Login und Demo-Registrierung
-- Adminformulare für Content, Programm, Aufgaben und Mitarbeiter
+- funktionierende Navigation zwischen Dashboard, Programm, Content und Team
+- Tagesauswahl
+- Programmpunkte hinzufügen, bearbeiten und löschen
+- Content hinzufügen, bearbeiten und löschen
+- Aufgaben hinzufügen/bearbeiten/löschen über Adminformular
+- Mitarbeiter hinzufügen, bearbeiten und löschen
+- Rollenverwaltung über Mitarbeiter-Bearbeitung
+- lokale Inspirationsbilder
+- klare Instagram/TikTok/Reel-Buttons
+- einzelne Kalendertermine und ein kompletter Tagesexport
+- responsive Darstellung
 
-Wichtig:
-Login, Accounts und Änderungen werden in dieser Version nur lokal im Browser gespeichert.
-Für sicheren Login und gemeinsame Daten aller Teammitglieder muss die App mit Supabase verbunden werden.
-
-GitHub Pages:
-index.html und logo.webp in das bestehende Repository hochladen und die alten Dateien ersetzen.
+Hinweis:
+Die Beta speichert lokal im Browser. Supabase wird für echten gemeinsamen Login,
+gemeinsame Daten und sichere Bildspeicherung benötigt.
