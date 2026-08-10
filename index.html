@@ -25,8 +25,10 @@
     <div class="eyebrow">Gospel Youth Mission Control</div>
     <h1 id="eventTitle">Sommerfestival 2026</h1>
     <div id="eventSubtitle" class="event-subtitle">Heaven Now</div>
-    <p id="eventIntro">Social-Media-Planung für das gesamte Team.</p>
+    <p id="eventIntro">Daten werden geladen …</p>
   </section>
+
+  <div id="connectionStatus" class="status-banner">Mit Supabase verbinden …</div>
 
   <section>
     <div class="section-label">Tag auswählen</div>
@@ -42,32 +44,31 @@
   </section>
 
   <section id="summaryCard" class="summary-card glass"></section>
-
   <section id="assignmentOverview" class="assignment-overview"></section>
-
   <section id="dayparts"></section>
 </main>
 
 <div id="adminOverlay" class="overlay hidden">
   <div class="admin-shell">
     <div class="admin-header">
-      <div>
-        <div class="eyebrow">Adminbereich</div>
-        <h2 id="adminHeading">Verwaltung</h2>
-      </div>
+      <div><div class="eyebrow">Adminbereich</div><h2>Verwaltung</h2></div>
       <button class="round-btn" onclick="closeAdmin()">×</button>
     </div>
 
     <div id="adminLogin" class="admin-login glass">
       <h3>Anmelden</h3>
-      <p>Nur Admins können Inhalte bearbeiten.</p>
-      <label>E-Mail<input id="adminEmail" type="email" value="admin@gospelyouth.de"></label>
-      <label>Passwort<input id="adminPassword" type="password" placeholder="Passwort"></label>
+      <p>Nutze den User, den du in Supabase Authentication angelegt hast.</p>
+      <label>E-Mail<input id="adminEmail" type="email" autocomplete="username"></label>
+      <label>Passwort<input id="adminPassword" type="password" autocomplete="current-password"></label>
       <button class="primary-btn" onclick="loginAdmin()">Anmelden</button>
-      <small>Demo-Passwort: missioncontrol</small>
+      <small id="loginMessage"></small>
     </div>
 
     <div id="adminApp" class="hidden">
+      <div class="admin-userbar">
+        <span id="adminUser"></span>
+        <button class="secondary-btn small" onclick="logoutAdmin()">Abmelden</button>
+      </div>
       <div class="admin-tabs">
         <button class="admin-tab active" onclick="showAdminTab('overview',this)">Übersicht</button>
         <button class="admin-tab" onclick="showAdminTab('program',this)">Programm</button>
@@ -76,7 +77,6 @@
         <button class="admin-tab" onclick="showAdminTab('team',this)">Team</button>
         <button class="admin-tab" onclick="showAdminTab('settings',this)">Einstellungen</button>
       </div>
-
       <div id="admin-overview" class="admin-panel active"></div>
       <div id="admin-program" class="admin-panel"></div>
       <div id="admin-content" class="admin-panel"></div>
@@ -94,13 +94,16 @@
       <button class="round-btn" onclick="closeForm()">×</button>
     </div>
     <div id="formBody"></div>
+    <div id="formError" class="form-error hidden"></div>
     <div class="form-actions">
       <button class="secondary-btn" onclick="closeForm()">Abbrechen</button>
-      <button class="primary-btn" onclick="saveForm()">Speichern</button>
+      <button id="saveButton" class="primary-btn" onclick="saveForm()">Speichern</button>
     </div>
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
