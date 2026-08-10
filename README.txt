@@ -1,24 +1,22 @@
-Gospel Youth Mission Control V5 Beta
+Gospel Youth Mission Control V6
 
-Enthalten:
-- öffentlich ohne Login
-- Mobile First
-- pro Tag Morgen / Mittag / Abend
-- Programmkarten mit gleicher Kopfstruktur
-- Sprecher + Fotograf + Story-Koordinator + Story-Maker + Reel-Maker
-- Aufgaben direkt am Programmpunkt
-- Content direkt am Programmpunkt
-- Reel-/TikTok-/Instagram-Links
-- Fotos mit Beschreibung im Content
-- Teamübersicht
-- Admin-Cockpit über alle Tage
-- Programm, Aufgaben, Content, Team, Überschriften und Social-Links ohne Code editierbar
-- Dark Mode
+Neu:
+- kein "Heute"-Tab mehr
+- zuerst Tag auswählen
+- danach separate Kategorien Gesamt / Stories / Fotograf / Reels / Interviews
+- Gesamtbesetzung pro Tag
+- Morgen / Mittag / Abend
+- Admin ohne Icon
+- Social Media nur als Icons
+- Admin CRUD für Programm, Content, Aufgaben, Team, Einstellungen
+- Fotos im Content mit Beschreibung
 - Kalenderexport
+- mobile-first
 
-Demo-Admin:
+Admin Demo:
+E-Mail beliebig
 Passwort: missioncontrol
 
-Die Beta speichert Änderungen aktuell lokal im Browser.
-Für gemeinsame Daten, echten Admin-Login und automatische E-Mails wird Supabase angebunden.
-Das SQL-Grundschema liegt in supabase-schema.sql.
+Hinweis:
+Diese Version speichert weiterhin lokal im Browser. Für gemeinsame Daten auf mehreren Geräten
+und automatische E-Mails muss Supabase/Backend angebunden werden.
