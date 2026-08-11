@@ -12,10 +12,10 @@
   <div class="topbar-inner">
     <img src="logo.webp" class="logo" alt="Gospel Youth">
     <div class="top-actions">
-      <a id="igTop" class="social-icon" target="_blank" title="Instagram" aria-label="Instagram">◎</a>
-      <a id="ttTop" class="social-icon" target="_blank" title="TikTok" aria-label="TikTok">♪</a>
+      <a id="igTop" class="social-icon social-img" target="_blank" title="Instagram" aria-label="Instagram"><img src="instagram.jpg" alt=""></a>
+      <a id="ttTop" class="social-icon social-img" target="_blank" title="TikTok" aria-label="TikTok"><img src="tiktok.webp" alt=""></a>
       <button class="text-btn" onclick="openAdmin()">Admin</button>
-      <button class="round-btn" onclick="toggleTheme()" aria-label="Dark Mode">◐</button>
+      <button class="round-btn" onclick="toggleTheme()" aria-label="Darstellung wechseln">◐</button>
     </div>
   </div>
 </header>
@@ -30,7 +30,7 @@
 
   <div id="connectionStatus" class="status-banner">Mit Supabase verbinden …</div>
 
-  <section>
+  <section class="day-select-section">
     <div class="section-label">Tag auswählen</div>
     <div id="dayStrip" class="day-strip"></div>
   </section>
@@ -43,9 +43,15 @@
     <button class="category" data-category="interview" onclick="setCategory('interview',this)">Interviews</button>
   </section>
 
+  <section id="goalsCard" class="goals-card glass"></section>
   <section id="summaryCard" class="summary-card glass"></section>
   <section id="assignmentOverview" class="assignment-overview"></section>
   <section id="dayparts"></section>
+
+  <section id="teamDirectory" class="public-section"></section>
+  <section id="mySchedule" class="public-section"></section>
+
+  <footer>Social Media Contentplan · Created by Ebenezer Agonafer</footer>
 </main>
 
 <div id="adminOverlay" class="overlay hidden">
@@ -57,7 +63,7 @@
 
     <div id="adminLogin" class="admin-login glass">
       <h3>Anmelden</h3>
-      <p>Nutze den User, den du in Supabase Authentication angelegt hast.</p>
+      <p>Nutze deinen Supabase-Admin-Account.</p>
       <label>E-Mail<input id="adminEmail" type="email" autocomplete="username"></label>
       <label>Passwort<input id="adminPassword" type="password" autocomplete="current-password"></label>
       <button class="primary-btn" onclick="loginAdmin()">Anmelden</button>
@@ -67,7 +73,7 @@
     <div id="adminApp" class="hidden">
       <div class="admin-userbar">
         <span id="adminUser"></span>
-        <button class="secondary-btn small" onclick="logoutAdmin()">Abmelden</button>
+        <button class="secondary-btn compact" onclick="logoutAdmin()">Abmelden</button>
       </div>
       <div class="admin-tabs">
         <button class="admin-tab active" onclick="showAdminTab('overview',this)">Übersicht</button>
@@ -75,6 +81,7 @@
         <button class="admin-tab" onclick="showAdminTab('content',this)">Content</button>
         <button class="admin-tab" onclick="showAdminTab('tasks',this)">Aufgaben</button>
         <button class="admin-tab" onclick="showAdminTab('team',this)">Team</button>
+        <button class="admin-tab" onclick="showAdminTab('goals',this)">Tagesziele</button>
         <button class="admin-tab" onclick="showAdminTab('settings',this)">Einstellungen</button>
       </div>
       <div id="admin-overview" class="admin-panel active"></div>
@@ -82,6 +89,7 @@
       <div id="admin-content" class="admin-panel"></div>
       <div id="admin-tasks" class="admin-panel"></div>
       <div id="admin-team" class="admin-panel"></div>
+      <div id="admin-goals" class="admin-panel"></div>
       <div id="admin-settings" class="admin-panel"></div>
     </div>
   </div>
@@ -99,6 +107,14 @@
       <button class="secondary-btn" onclick="closeForm()">Abbrechen</button>
       <button id="saveButton" class="primary-btn" onclick="saveForm()">Speichern</button>
     </div>
+  </div>
+</div>
+
+<div id="imageViewer" class="image-viewer hidden" onclick="closeImageViewer()">
+  <div class="image-viewer-inner" onclick="event.stopPropagation()">
+    <button class="round-btn image-close" onclick="closeImageViewer()">×</button>
+    <img id="viewerImage" alt="">
+    <p id="viewerCaption"></p>
   </div>
 </div>
 
