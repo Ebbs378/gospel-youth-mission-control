@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="de" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#09090b">
+<title>Gospel Youth Mission Control</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <img src="logo.webp" class="logo" alt="Gospel Youth">
+    <div class="top-actions">
+      <a id="igTop" class="social-icon social-img" target="_blank" title="Instagram" aria-label="Instagram"><img src="instagram.jpg" alt=""></a>
+      <a id="ttTop" class="social-icon social-img" target="_blank" title="TikTok" aria-label="TikTok"><img src="tiktok.webp" alt=""></a>
+      <button class="text-btn" onclick="openAdmin()">Admin</button>
+      <button class="round-btn" onclick="toggleTheme()" aria-label="Darstellung wechseln">◐</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="event-hero">
+    <div class="eyebrow">Gospel Youth Mission Control</div>
+    <h1 id="eventTitle">Sommerfestival 2026</h1>
+    <div id="eventSubtitle" class="event-subtitle">Heaven Now</div>
+    <p id="eventIntro">Daten werden geladen …</p>
+  </section>
+
+  <div id="connectionStatus" class="status-banner">Mit Supabase verbinden …</div>
+
+  <section class="day-select-section">
+    <div class="section-label">Tag auswählen</div>
+    <div id="dayStrip" class="day-strip"></div>
+  </section>
+
+  <section class="category-wrap">
+    <button class="category active" data-category="all" onclick="setCategory('all',this)">Gesamt</button>
+    <button class="category" data-category="story" onclick="setCategory('story',this)">Stories</button>
+    <button class="category" data-category="photo" onclick="setCategory('photo',this)">Fotograf</button>
+    <button class="category" data-category="reel" onclick="setCategory('reel',this)">Reels</button>
+    <button class="category" data-category="interview" onclick="setCategory('interview',this)">Interviews</button>
+  </section>
+
+  <section id="goalsCard" class="goals-card glass"></section>
+  <section id="summaryCard" class="summary-card glass"></section>
+  <section id="assignmentOverview" class="assignment-overview"></section>
+  <section id="dayparts"></section>
+
+  <section id="teamDirectory" class="public-section"></section>
+  <section id="mySchedule" class="public-section"></section>
+
+  <footer>Social Media Contentplan · Created by Ebenezer Agonafer</footer>
+</main>
+
+<div id="adminOverlay" class="overlay hidden">
+  <div class="admin-shell">
+    <div class="admin-header">
+      <div><div class="eyebrow">Adminbereich</div><h2>Verwaltung</h2></div>
+      <button class="round-btn" onclick="closeAdmin()">×</button>
+    </div>
+
+    <div id="adminLogin" class="admin-login glass">
+      <h3>Anmelden</h3>
+      <p>Nutze deinen Supabase-Admin-Account.</p>
+      <label>E-Mail<input id="adminEmail" type="email" autocomplete="username"></label>
+      <label>Passwort<input id="adminPassword" type="password" autocomplete="current-password"></label>
+      <button class="primary-btn" onclick="loginAdmin()">Anmelden</button>
+      <small id="loginMessage"></small>
+    </div>
+
+    <div id="adminApp" class="hidden">
+      <div class="admin-userbar">
+        <span id="adminUser"></span>
+        <button class="secondary-btn compact" onclick="logoutAdmin()">Abmelden</button>
+      </div>
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="showAdminTab('overview',this)">Übersicht</button>
+        <button class="admin-tab" onclick="showAdminTab('program',this)">Programm</button>
+        <button class="admin-tab" onclick="showAdminTab('content',this)">Content</button>
+        <button class="admin-tab" onclick="showAdminTab('tasks',this)">Aufgaben</button>
+        <button class="admin-tab" onclick="showAdminTab('team',this)">Team</button>
+        <button class="admin-tab" onclick="showAdminTab('goals',this)">Tagesziele</button>
+        <button class="admin-tab" onclick="showAdminTab('settings',this)">Einstellungen</button>
+      </div>
+      <div id="admin-overview" class="admin-panel active"></div>
+      <div id="admin-program" class="admin-panel"></div>
+      <div id="admin-content" class="admin-panel"></div>
+      <div id="admin-tasks" class="admin-panel"></div>
+      <div id="admin-team" class="admin-panel"></div>
+      <div id="admin-goals" class="admin-panel"></div>
+      <div id="admin-settings" class="admin-panel"></div>
+    </div>
+  </div>
+</div>
+
+<div id="formModal" class="overlay hidden">
+  <div class="form-sheet">
+    <div class="form-head">
+      <h3 id="formTitle">Bearbeiten</h3>
+      <button class="round-btn" onclick="closeForm()">×</button>
+    </div>
+    <div id="formBody"></div>
+    <div id="formError" class="form-error hidden"></div>
+    <div class="form-actions">
+      <button class="secondary-btn" onclick="closeForm()">Abbrechen</button>
+      <button id="saveButton" class="primary-btn" onclick="saveForm()">Speichern</button>
+    </div>
+  </div>
+</div>
+
+<div id="imageViewer" class="image-viewer hidden" onclick="closeImageViewer()">
+  <div class="image-viewer-inner" onclick="event.stopPropagation()">
+    <button class="round-btn image-close" onclick="closeImageViewer()">×</button>
+    <img id="viewerImage" alt="">
+    <p id="viewerCaption"></p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
