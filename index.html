@@ -1,76 +1,17 @@
-<!doctype html>
-<html lang="de" data-theme="dark">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#070708"><title>Gospel Youth · Mission Control</title>
-<link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<header class="topbar"><div class="top-inner">
-  <img src="logo.webp" class="logo" alt="Gospel Youth">
-  <nav class="desktop-nav">
-    <button data-view="plan" class="nav active" onclick="showView('plan')">Plan</button>
-    <button data-view="mine" class="nav" onclick="showView('mine')">Meine Einsätze</button>
-    <button data-view="team" class="nav" onclick="showView('team')">Team</button>
-    <button data-view="templates" class="nav" onclick="showView('templates')">Vorlagen</button>
-  </nav>
-  <div class="top-actions"><a id="ig" class="social" target="_blank"><img src="instagram.jpg"></a><a id="tt" class="social" target="_blank"><img src="tiktok.webp"></a><button class="adminText" onclick="openAdmin()">Admin</button><button class="theme" onclick="toggleTheme()">◐</button></div>
-</div></header>
-
-<main>
-<section class="hero"><div class="kicker">Gospel Youth · Social Media Mission Control</div><h1 id="title">Sommerfestival 2026</h1><p id="subtitle" class="lead">Heaven Now</p></section>
-<div id="error" class="error hidden"></div>
-
-<section id="view-plan" class="view active">
-  <div class="section-label">Tag</div><div id="days" class="days"></div>
-  <section id="dayHero" class="dayHero"></section>
-  <section id="progress" class="progressWrap"></section>
-  <div id="dayparts"></div>
-</section>
-
-<section id="view-mine" class="view">
- <div class="pageHead"><div class="kicker">Persönlicher Plan</div><h2>Meine Einsätze</h2><p>Person und Tag auswählen. Nur das, was für dich relevant ist.</p></div>
- <div class="selector"><select id="minePerson" onchange="setMinePerson(this.value)"></select></div>
- <div id="mineDays" class="days"></div><div id="mineNext"></div><div id="mineList"></div>
- <button id="calendarAll" class="primary hidden" onclick="exportMine()">Alle Einsätze in Kalender</button>
-</section>
-
-<section id="view-team" class="view">
- <div class="pageHead"><div class="kicker">Crew</div><h2>Team</h2><p>Alle Mitarbeiter und ihre Rollen.</p></div>
- <div id="teamFilters" class="pills"></div><div id="teamGrid" class="teamGrid"></div>
-</section>
-
-<section id="view-templates" class="view">
- <div class="pageHead"><div class="kicker">Assets</div><h2>Vorlagen</h2><p>Story-, Post- und Reel-Vorlagen für das Team.</p></div>
- <div id="templateFilters" class="pills"></div><div id="templateGrid" class="templateGrid"></div>
-</section>
-
-<footer>Social Media Contentplan · Created by Ebenezer Agonafer</footer>
-</main>
-
-<nav class="mobileNav">
- <button data-view="plan" class="active" onclick="showView('plan')">Plan</button>
- <button data-view="mine" onclick="showView('mine')">Einsätze</button>
- <button data-view="team" onclick="showView('team')">Team</button>
- <button data-view="templates" onclick="showView('templates')">Vorlagen</button>
-</nav>
-
-<div id="admin" class="overlay hidden"><div class="adminShell">
- <header class="adminHeader"><div><div class="kicker">Admin</div><h2>Mission Control</h2></div><button class="x" onclick="closeAdmin()">×</button></header>
- <div id="login" class="login"><h3>Anmelden</h3><p>Nur Admins können bearbeiten.</p><input id="email" type="email" placeholder="E-Mail"><input id="password" type="password" placeholder="Passwort"><button class="primary" onclick="login()">Anmelden</button><small id="loginMsg"></small></div>
- <div id="adminApp" class="hidden">
-  <div class="adminBar"><span id="adminEmail"></span><button class="ghost" onclick="logout()">Abmelden</button></div>
-  <div class="section-label">Tag bearbeiten</div><div id="adminDays" class="days"></div>
-  <div class="adminPreviewHead"><div><div class="kicker">Live-Vorschau</div><h3 id="adminDayTitle"></h3></div><button class="primary" onclick="editDay()">Tag & Thema bearbeiten</button></div>
-  <div id="adminProgress"></div><div id="adminDayparts"></div>
-  <section class="adminSection"><div class="adminPreviewHead"><div><h3>Vorlagen</h3><p>PNG/JPG für das Team.</p></div><button class="primary" onclick="openForm('template')">+ Vorlage</button></div><div id="adminTemplates" class="templateGrid"></div></section>
-  <section class="adminSection"><div class="adminPreviewHead"><div><h3>Team</h3><p>Mitarbeiter und Rollen.</p></div><button class="primary" onclick="openForm('member')">+ Person</button></div><div id="adminTeam" class="teamGrid"></div></section>
- </div>
-</div></div>
-
+<!doctype html><html lang="de" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#070708"><title>Gospel Youth · Mission Control</title><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css"></head><body>
+<div id="teamGate" class="gate"><div class="gateCard"><img src="logo.webp" class="gateLogo"><div class="kicker">Sommerfestival 2026</div><h1>Mission Control</h1><p>Geschützter Bereich für das Social-Media-Team.</p><input id="teamPassword" type="password" inputmode="numeric" maxlength="12" placeholder="Team-Passwort"><button class="primary wide" onclick="unlockTeam()">Team-Bereich öffnen</button><button class="textBtn" onclick="openAdmin(true)">Admin-Anmeldung</button><small id="gateMsg"></small></div></div>
+<div id="appRoot" class="hidden">
+<header class="topbar"><div class="top-inner"><img src="logo.webp" class="logo" alt="Gospel Youth"><div class="top-actions"><a id="quiet" class="quiet" target="_blank" title="Vergiss nicht deine stille Zeit"><span>📖</span><b>Stille Zeit</b></a><a id="ig" class="social" target="_blank"><img src="instagram.jpg"></a><a id="tt" class="social" target="_blank"><img src="tiktok.webp"></a><button class="theme" onclick="toggleTheme()">◐</button></div></div><nav class="mainNav"><button data-view="home" class="active" onclick="showView('home')">Home</button><button data-view="plan" onclick="showView('plan')">Plan</button><button data-view="mine" onclick="showView('mine')">Meine Einsätze</button><button data-view="team" onclick="showView('team')">Team</button><button data-view="templates" onclick="showView('templates')">Vorlagen</button><button data-view="finished" onclick="showView('finished')">Fertiger Content</button><button onclick="openAdmin()">Admin</button></nav></header>
+<main><div id="error" class="error hidden"></div>
+<section id="view-home" class="view active"><section class="homeHero"><div class="kicker">Gospel Youth · Social Media Mission Control</div><h1 id="title">Sommerfestival 2026</h1><p id="subtitle" class="lead">Heaven Now</p></section><div id="announcement"></div><section class="verseCard"><div class="kicker">Vers des Tages</div><blockquote id="homeVerse"></blockquote><div id="homeVerseRef" class="verseRef"></div><a id="homeBible" target="_blank" class="smallLink">Bibel öffnen ↗</a></section><section class="motivation"><div class="kicker">Warum wir das tun</div><h2 id="motivationTitle">Wir halten fest, was Gott hier tut.</h2><p id="motivationText"></p></section><section id="homeToday" class="todayCard"></section><div class="quickGrid"><button onclick="showView('plan')"><b>Tagesplan</b><span>Was passiert heute? →</span></button><button onclick="showView('mine')"><b>Meine Einsätze</b><span>Deine Aufgaben →</span></button><button onclick="showView('finished')"><b>Fertiger Content</b><span>Downloads & Ergebnisse →</span></button><button onclick="showView('templates')"><b>Vorlagen</b><span>Assets fürs Team →</span></button></div><div class="externalGrid"><a id="waHome" target="_blank">WhatsApp-Gruppe ↗</a><a id="dropboxHome" target="_blank">Dropbox ↗</a><a id="igHome" target="_blank">Instagram ↗</a><a id="ttHome" target="_blank">TikTok ↗</a></div></section>
+<section id="view-plan" class="view"><div class="pageHead"><div class="kicker">Content & Programm</div><h2>Tagesplan</h2><p>Programmpunkte, Unterpunkte und alle Content-Aufgaben an einem Ort.</p></div><div class="section-label">Tag</div><div id="days" class="days"></div><div id="planPartFilters" class="pills"></div><section id="dayHero" class="dayHero"></section><section id="progress" class="progressWrap"></section><div id="dayparts"></div></section>
+<section id="view-mine" class="view"><div class="pageHead"><div class="kicker">Persönlicher Plan</div><h2>Meine Einsätze</h2><p>Person und Tag auswählen.</p></div><div class="selector"><select id="minePerson" onchange="setMinePerson(this.value)"></select></div><div id="mineDays" class="days"></div><div id="mineList"></div><button id="calendarAll" class="primary hidden" onclick="exportMine()">Alle Einsätze in Kalender</button></section>
+<section id="view-team" class="view"><div class="pageHead"><div class="kicker">Crew</div><h2>Team</h2><p>Alle Mitarbeiter und ihre Bereiche.</p><a id="waTeam" class="primary inline" target="_blank">WhatsApp-Gruppe öffnen ↗</a></div><div id="teamFilters" class="pills"></div><div id="teamGrid" class="teamGrid"></div></section>
+<section id="view-templates" class="view"><div class="pageHead"><div class="kicker">Assets</div><h2>Vorlagen</h2><p>Story-, Post- und Reel-Vorlagen.</p></div><div id="templateFilters" class="pills"></div><div id="templateGrid" class="templateGrid"></div></section>
+<section id="view-finished" class="view"><div class="pageHead"><div class="kicker">Output</div><h2>Fertiger Content</h2><p>Bearbeitete Bilder, Bibelverse, Predigtnotizen und fertige Assets.</p><a id="dropboxFinished" class="primary inline" target="_blank">Alle Dateien in Dropbox ↗</a></div><div class="section-label">Tag</div><div id="finishedDays" class="days"></div><div id="finishedFilters" class="pills"></div><div id="finishedGrid" class="templateGrid"></div></section>
+<footer>Social Media Contentplan · Created by Ebenezer Agonafer</footer></main></div>
+<div id="admin" class="overlay hidden"><div class="adminShell"><header class="adminHeader"><div><div class="kicker">Admin</div><h2>Mission Control</h2></div><button class="x" onclick="closeAdmin()">×</button></header><div id="login" class="login"><h3>Admin anmelden</h3><p>Bearbeiten ist nur mit deinem Supabase-Admin-Account möglich.</p><input id="email" type="email" placeholder="E-Mail"><input id="password" type="password" placeholder="Passwort"><button class="primary" onclick="login()">Anmelden</button><small id="loginMsg"></small></div><div id="adminApp" class="hidden"><div class="adminBar"><span id="adminEmail"></span><button class="ghost" onclick="logout()">Abmelden</button></div><div class="adminTabs"><button onclick="adminTab('day')" class="active" data-atab="day">Tagesansicht</button><button onclick="adminTab('settings')" data-atab="settings">Home & Links</button><button onclick="adminTab('assets')" data-atab="assets">Assets</button><button onclick="adminTab('people')" data-atab="people">Team</button></div><div id="admin-day" class="adminPane"><div class="section-label">Tag bearbeiten</div><div id="adminDays" class="days"></div><div class="adminPreviewHead"><div><div class="kicker">Live-Vorschau</div><h3 id="adminDayTitle"></h3></div><button class="primary" onclick="editDay()">Tag & Thema bearbeiten</button></div><div id="adminProgress"></div><div id="adminDayparts"></div></div><div id="admin-settings" class="adminPane hidden"><div class="adminPreviewHead"><div><h3>Home, Vers & Links</h3><p>Alles ohne Code ändern.</p></div><button class="primary" onclick="openForm('settings')">Bearbeiten</button></div><div id="adminSettingsPreview"></div></div><div id="admin-assets" class="adminPane hidden"><section class="adminSection"><div class="adminPreviewHead"><div><h3>Fertiger Content</h3></div><button class="primary" onclick="openForm('finished')">+ Content</button></div><div id="adminFinished" class="templateGrid"></div></section><section class="adminSection"><div class="adminPreviewHead"><div><h3>Vorlagen</h3></div><button class="primary" onclick="openForm('template')">+ Vorlage</button></div><div id="adminTemplates" class="templateGrid"></div></section></div><div id="admin-people" class="adminPane hidden"><section class="adminSection"><div class="adminPreviewHead"><div><h3>Team</h3></div><button class="primary" onclick="openForm('member')">+ Person</button></div><div id="adminTeam" class="teamGrid"></div></section></div></div></div></div>
 <div id="formModal" class="overlay hidden"><div class="sheet"><header class="sheetHead"><h3 id="formTitle"></h3><button class="x" onclick="closeForm()">×</button></header><div id="formBody"></div><div id="formError" class="error hidden"></div><div class="formActions"><button class="ghost" onclick="closeForm()">Abbrechen</button><button id="save" class="primary" onclick="saveForm()">Speichern</button></div></div></div>
-
+<div id="actionMenu" class="overlay hidden" onclick="closeActionMenu()"><div class="actionSheet" onclick="event.stopPropagation()"><h3>Aktionen</h3><div id="actionBody"></div><button class="ghost wide" onclick="closeActionMenu()">Schließen</button></div></div>
 <div id="gallery" class="gallery hidden" onclick="closeGallery()"><button class="x galleryX" onclick="closeGallery()">×</button><button class="galleryPrev" onclick="event.stopPropagation();galleryStep(-1)">‹</button><div class="galleryInner" onclick="event.stopPropagation()"><img id="galleryImg"><p id="galleryCaption"></p></div><button class="galleryNext" onclick="event.stopPropagation();galleryStep(1)">›</button></div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script><script src="app.js"></script>
-</body></html>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script><script src="app.js"></script><script>if("serviceWorker" in navigator)navigator.serviceWorker.register("./sw.js").catch(()=>{});</script></body></html>
