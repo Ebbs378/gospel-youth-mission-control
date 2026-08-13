@@ -211,3 +211,127 @@ window.addEventListener("DOMContentLoaded",()=>{
     $("teamGate").classList.remove("hidden");$("appShell").classList.add("hidden");
   }
 });
+
+
+/* === V11.2 DATA-SAFE RENDER FIX ===
+   This block intentionally overrides only UI rendering/session wiring.
+   It does NOT delete, migrate, reset or rewrite existing content data. */
+
+unlockTeam = async function(){
+  const code=$("teamCode").value.trim();
+  $("gateError").textContent="";
+  try{
+    const {data,error}=await S.rpc("team_members_with_passcode",{passcode:code});
+    if(error) throw error;
+    teamPass=code; // critical: keep passcode for all subsequent RPC reloads
+    sessionStorage.setItem("gyTeamPass",code);
+    sessionStorage.setItem("gyTeamUnlocked","1");
+    window.__gy_team_unlocked=true;
+    $("teamGate").classList.add("hidden");
+    $("appShell").classList.remove("hidden");
+    await load(data||[]);
+  }catch(e){
+    console.error(e);
+    $("gateError").textContent=e.message.includes("invalid team passcode")?"Team-Code nicht korrekt.":e.message;
+  }
+};
+
+header = function(){
+  const st=D.settings||{};
+  const bible=st.bible_url||"https://www.bible.com/bible/157/MAT.1.SCH2000";
+  if($("igTop")) $("igTop").href=st.instagram_url||"#";
+  if($("ttTop")) $("ttTop").href=st.tiktok_url||"#";
+  if($("quietTop")) $("quietTop").href=bible;
+  if($("homeBibleLink")) $("homeBibleLink").href=bible;
+  if($("homeWhatsapp")) $("homeWhatsapp").href=st.whatsapp_url||"#";
+  if($("teamWhatsapp")) $("teamWhatsapp").href=st.whatsapp_url||"#";
+  if($("homeDropbox")) $("homeDropbox").href=st.dropbox_url||"#";
+  if($("homeInstagram")) $("homeInstagram").href=st.instagram_url||"#";
+  if($("homeTikTok")) $("homeTikTok").href=st.tiktok_url||"#";
+};
+
+home = function(){
+  const st=D.settings||{}, d=dayObj(date);
+  if($("homeWelcome")) $("homeWelcome").textContent=
+    st.home_motivation||st.motivation_text||
+    "Schön, dass du dabei bist. Wir wollen festhalten, was Gott tut – aufmerksam, kreativ und mit einem dienenden Herzen.";
+  const verse=st.home_verse||st.daily_verse||"";
+  const ref=st.home_verse_ref||st.daily_verse_ref||"";
+  if($("homeVerse")) $("homeVerse").innerHTML=verse?`<blockquote>${esc(verse)}</blockquote>${ref?`<small>${esc(ref)}</small>`:""}`:"";
+  if($("homeAnnouncement")) $("homeAnnouncement").innerHTML=st.announcement?`<div class="refuel-card" style="margin-top:12px"><div></div><div><div class="kicker">Team-Info</div><p>${esc(st.announcement)}</p></div></div>`:"";
+  if($("homeToday")){
+    const todos=dayTodos(date), done=todos.filter(x=>x.done).length;
+    $("homeToday").innerHTML=`<section class="dayHero"><div class="kicker">Heute · ${fmt(date)}</div><h2>${esc(d.theme||"Tagesplan")}</h2><p>${esc(d.briefing||d.description||"")}</p><div class="pills"><span class="pill active">${done}/${todos.length} erledigt</span></div></section>`;
+  }
+};
+
+planFilters=function(){
+  document.querySelectorAll("#planPeriods .pill").forEach(btn=>{
+    const txt=btn.textContent.trim();
+    const map={"Ganzer Tag":"all","Morgen":"morning","Mittag":"midday","Abend":"evening"};
+    btn.classList.toggle("active",map[txt]===planPart);
+  });
+};
+
+setPlanPeriod=function(part,btn){
+  planPart=part;
+  document.querySelectorAll("#planPeriods .pill").forEach(x=>x.classList.remove("active"));
+  if(btn) btn.classList.add("active");
+  dayparts("dayparts",date,false);
+};
+
+render=function(){
+  header();
+  home();
+  days("planDays",date,"selectDate");
+  planFilters();
+  dayHero();
+  progress("progress",date);
+  dayparts("dayparts",date,false);
+  mineUI();
+  team();
+  templates();
+  finished();
+  if(session) adminUI();
+};
+
+adminUI=function(){
+  days("adminDays",date,"selectAdminDate");
+  const d=dayObj(date);
+  if($("adminDayTitle")) $("adminDayTitle").textContent=fmt(date)+" · "+(d.theme||"Tagesplan");
+  progress("adminProgress",date);
+  dayparts("adminDayparts",date,true);
+
+  if($("adminHomePreview")){
+    const st=D.settings||{};
+    $("adminHomePreview").innerHTML=`<div class="teamCard"><h3>${esc(st.home_verse||st.daily_verse||"Home & Links")}</h3><p>${esc(st.home_verse_ref||st.daily_verse_ref||"")}</p><p>${esc(st.home_motivation||st.motivation_text||"")}</p></div>`;
+  }
+  if($("adminFinished")) $("adminFinished").innerHTML=D.finished.map(x=>`<div class="templateCard">${x.file_type?.startsWith("video")?`<video controls preload="metadata" src="${esc(x.file_url)}" style="width:100%"></video>`:`<img src="${esc(x.file_url)}">`}<div class="templateBody"><strong>${esc(x.title)}</strong><div class="editRow"><button class="editBtn" onclick="openForm('finished','${x.id}')">Bearbeiten</button><button class="deleteBtn" onclick="removeRow('finished','${x.id}')">Löschen</button></div></div></div>`).join("");
+  if($("adminTemplates")) $("adminTemplates").innerHTML=D.templates.map(x=>`<div class="templateCard"><img src="${esc(x.file_url)}"><div class="templateBody"><strong>${esc(x.title)}</strong><div class="editRow"><button class="editBtn" onclick="openForm('template','${x.id}')">Bearbeiten</button><button class="deleteBtn" onclick="removeRow('template','${x.id}')">Löschen</button></div></div></div>`).join("");
+  if($("adminTeam")) $("adminTeam").innerHTML=D.members.map(m=>`<div class="teamCard"><h3>${esc(m.name)}</h3><p>${[...new Set(m.roles||[])].map(esc).join(" · ")}</p><div class="editRow"><button class="editBtn" onclick="openForm('member','${m.id}')">Bearbeiten</button><button class="deleteBtn" onclick="removeRow('member','${m.id}')">Löschen</button></div></div>`).join("");
+};
+
+showAdminMain=function(name,btn){
+  document.querySelectorAll(".admin-main-panel").forEach(x=>x.classList.remove("active"));
+  const panel=$("admin-main-"+name); if(panel) panel.classList.add("active");
+  document.querySelectorAll(".admin-main").forEach(x=>x.classList.remove("active"));
+  if(btn) btn.classList.add("active");
+};
+
+/* safer startup: use the same passcode value everywhere */
+document.addEventListener("DOMContentLoaded",async()=>{
+  const saved=sessionStorage.getItem("gyTeamPass")||"";
+  if(saved){
+    teamPass=saved;
+    try{
+      const {data,error}=await S.rpc("team_members_with_passcode",{passcode:saved});
+      if(!error){
+        $("teamGate").classList.add("hidden");
+        $("appShell").classList.remove("hidden");
+        await load(data||[]);
+      }else{
+        sessionStorage.removeItem("gyTeamPass");
+      }
+    }catch(e){ console.error(e); }
+  }
+});
