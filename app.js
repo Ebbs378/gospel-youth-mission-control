@@ -335,3 +335,41 @@ document.addEventListener("DOMContentLoaded",async()=>{
     }catch(e){ console.error(e); }
   }
 });
+
+/* === V11.3 HOME POLISH === */
+function renderLeaderCardV113(){
+  const target=$("leaderCard");
+  if(!target) return;
+  const leader=D.members.find(m=>/ebenezer\s+agonafer/i.test(m.name||"")) ||
+               D.members.find(m=>/ebenezer|ebbs/i.test(m.name||""));
+  if(!leader){ target.innerHTML=""; return; }
+  const phone=(leader.phone||"").trim();
+  target.innerHTML=`<div class="leader-inner">
+    <div class="leader-avatar">EA</div>
+    <div>
+      <div class="kicker" style="color:inherit;opacity:.58">Bei Problemen oder Fragen</div>
+      <h3>Bereichsleiter · ${esc(leader.name)}</h3>
+      <p>Wenn du Unterstützung brauchst oder dir etwas zu viel wird, melde dich. Lieber einmal zu früh als einmal zu spät.</p>
+      ${phone?`<div class="leader-actions"><a href="tel:${esc(phone)}">Anrufen</a><a target="_blank" rel="noopener" href="https://wa.me/${esc(phone.replace(/\D/g,""))}">WhatsApp schreiben</a></div>`:""}
+    </div>
+  </div>`;
+}
+
+const __renderV113=render;
+render=function(){
+  __renderV113();
+  renderLeaderCardV113();
+  const st=D.settings||{};
+  if($("homeDropbox")) $("homeDropbox").href=st.dropbox_url||"#";
+  if($("homeWelcome")&&(st.home_motivation||st.motivation_text)){
+    $("homeWelcome").textContent=st.home_motivation||st.motivation_text;
+  }
+};
+
+const __homeV113=home;
+home=function(){
+  __homeV113();
+  renderLeaderCardV113();
+  const st=D.settings||{};
+  if($("homeDropbox")) $("homeDropbox").href=st.dropbox_url||"#";
+};

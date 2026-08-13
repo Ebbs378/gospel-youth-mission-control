@@ -29,7 +29,7 @@
     <img src="logo.webp" class="logo" alt="Gospel Youth">
     <div class="quiet-link-wrap">
       <a id="quietTop" class="quiet-link" target="_blank" href="https://www.bible.com/bible/157/MAT.1.SCH2000" aria-label="Bibel öffnen">
-        <span class="bible-icon" aria-hidden="true">▰</span>
+        <img class="bible-icon-img" src="bible-icon.png" alt="" aria-hidden="true">
         <span>Vergiss nicht Bibel zu lesen</span>
       </a>
     </div>
@@ -56,33 +56,54 @@
   <section class="home-hero">
     <div class="kicker">Gospel Youth · Sommerfestival 2026</div>
     <h1 id="homeTitle">Social Media Team</h1>
-    <p id="homeWelcome" class="home-welcome">Schön, dass du dabei bist. Wir wollen festhalten, was Gott tut – aufmerksam, kreativ und mit einem dienenden Herzen.</p>
   </section>
 
-  <section class="refuel-card">
-    <div class="bible-mark">▰</div>
+  <section class="why-card">
+    <div class="kicker">Warum wir das machen</div>
+    <h2>Wir halten nicht einfach Content fest.</h2>
+    <p id="homeWelcome" class="why-copy">Wir wollen sichtbar machen, was Gott während dieser Freizeit tut – ehrlich, aufmerksam und so, dass Menschen ermutigt werden und Jesus im Mittelpunkt bleibt.</p>
+  </section>
+
+  <section id="homeVerse" class="home-verse"></section>
+
+  <section class="quiet-home-card">
+    <div class="quiet-icon-box"><img src="bible-icon.png" alt=""></div>
     <div>
-      <div class="kicker">Auftanken</div>
-      <h2>Vergiss nicht, beim Dienen dich auch aufzutanken.</h2>
-      <p>Nutz deine Pause ohne Dienst, deine Kleingruppe und besonders den Morgen und Abend, um deinen Tag mit Gott zu starten und zu beenden.</p>
+      <div class="kicker">Stille Zeit</div>
+      <h2>Vergiss beim Dienen nicht, selbst aufzutanken.</h2>
+      <p>Nutz deine freie Zeit, deine Kleingruppe und besonders den Morgen und Abend, um deinen Tag mit Gott zu beginnen und zu beenden. Und wenn dir etwas zu viel wird: Komm zu Ebbs. Du musst Dinge nicht allein tragen.</p>
       <a id="homeBibleLink" class="primary inline" target="_blank" href="https://www.bible.com/bible/157/MAT.1.SCH2000">Bibel öffnen ↗</a>
     </div>
   </section>
 
-  <section id="homeVerse" class="home-verse"></section>
+  <section class="upload-section">
+    <div class="upload-copy">
+      <div class="kicker">Datei-Upload</div>
+      <h2>Am Ende des Tages: alles sichern.</h2>
+      <p>Alle fertigen und relevanten Dateien sollten am Ende des Tages hochgeladen sein. Nehmt euch bewusst Zeit dafür, damit nichts verloren geht und das Team am nächsten Tag sauber weiterarbeiten kann.</p>
+    </div>
+    <a id="homeDropbox" class="dropbox-tile" target="_blank">
+      <div class="dropbox-symbol">◆ ◆</div>
+      <div><strong>Dropbox öffnen</strong><small>Dateien hochladen & sichern ↗</small></div>
+    </a>
+  </section>
+
+  <section id="leaderCard" class="leader-card"></section>
   <section id="homeAnnouncement"></section>
   <section id="homeToday"></section>
 
-  <section class="quick-grid">
-    <button onclick="showView('plan')"><span>01</span><strong>Tagesplan</strong><small>Programm & Aufgaben</small></button>
-    <button onclick="showView('mine')"><span>02</span><strong>Meine Einsätze</strong><small>Nur dein Dienst</small></button>
-    <button onclick="showView('templates')"><span>03</span><strong>Vorlagen</strong><small>PNG/JPG Assets</small></button>
-    <button onclick="showView('finished')"><span>04</span><strong>Fertiger Content</strong><small>Downloads für den Tag</small></button>
+  <section class="quick-section">
+    <div class="kicker">Schnellzugriff</div>
+    <div class="quick-grid">
+      <button onclick="showView('plan')"><span>01</span><strong>Tagesplan</strong><small>Programm & Aufgaben</small></button>
+      <button onclick="showView('mine')"><span>02</span><strong>Meine Einsätze</strong><small>Nur dein Dienst</small></button>
+      <button onclick="showView('templates')"><span>03</span><strong>Vorlagen</strong><small>PNG/JPG Assets</small></button>
+      <button onclick="showView('finished')"><span>04</span><strong>Fertiger Content</strong><small>Downloads für den Tag</small></button>
+    </div>
   </section>
 
   <section class="link-row">
     <a id="homeWhatsapp" target="_blank">WhatsApp-Gruppe ↗</a>
-    <a id="homeDropbox" target="_blank">Dropbox ↗</a>
     <a id="homeInstagram" target="_blank">Instagram ↗</a>
     <a id="homeTikTok" target="_blank">TikTok ↗</a>
   </section>
