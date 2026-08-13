@@ -1,125 +1,1209 @@
 <!doctype html>
-<html lang="de" data-theme="dark">
+<html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#09090b">
-<title>Gospel Youth Mission Control</title>
-<link rel="stylesheet" href="styles.css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f5f7">
+<title>Gospel Forum Kalender 2027</title>
+<style>
+:root{--bg:#f5f5f7;--surface:rgba(255,255,255,.86);--solid:#fff;--text:#18181a;--muted:#727278;--line:rgba(20,20,25,.09);--accent:#0071e3;--event:#0071e3;--service:#24a148;--lead:#7c3aed;--holiday:#e5484d;--open:#d97706;--shadow:0 20px 70px rgba(0,0,0,.10);--r:24px}
+[data-theme=dark]{--bg:#08080a;--surface:rgba(28,28,30,.88);--solid:#1c1c1e;--text:#f5f5f7;--muted:#a1a1a6;--line:rgba(255,255,255,.11);--shadow:0 24px 80px rgba(0,0,0,.5)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}button,input{font:inherit}.page{max-width:1760px;margin:auto;padding:16px}.glass{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px)}
+.topbar{position:sticky;top:10px;z-index:30;border-radius:20px;padding:11px 13px;display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{display:flex;align-items:center;gap:10px}.brand img{width:40px;height:40px;border-radius:12px;background:white;padding:3px}.brand strong{display:block}.brand small{display:block;color:var(--muted)}.views,.actions{display:flex;gap:6px;align-items:center}.views{padding:4px;border-radius:13px;background:rgba(120,120,128,.12)}.views button,.icon,.nav,.primary{border:0;border-radius:10px;padding:8px 11px;cursor:pointer;color:var(--text);background:transparent}.views button.active{background:var(--solid);box-shadow:0 2px 10px rgba(0,0,0,.1)}.icon,.nav{background:rgba(120,120,128,.12)}.primary{background:var(--accent);color:#fff;font-weight:650;text-decoration:none}
+.hero{height:290px;margin:16px 0;border-radius:30px;overflow:hidden;position:relative}.hero img{width:100%;height:100%;object-fit:cover}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.82),rgba(0,0,0,.22) 72%)}.hero-copy{position:absolute;z-index:2;left:clamp(22px,5vw,70px);top:50%;transform:translateY(-50%);color:white;max-width:700px}.hero h1{font-size:clamp(40px,5.4vw,76px);letter-spacing:-.055em;line-height:.96;margin:10px 0}.hero p{max-width:600px;color:rgba(255,255,255,.78);line-height:1.5}.eyebrow{display:inline-block;background:rgba(255,255,255,.15);padding:7px 10px;border-radius:999px;font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}.stat{padding:15px 17px;border-radius:18px}.stat small{color:var(--muted)}.stat strong{display:block;font-size:26px;margin-top:3px}.stat span{font-size:12px;color:var(--muted)}
+.workspace{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:16px;align-items:start}.calendar,.side{border-radius:var(--r);overflow:hidden}.cal-head{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px}.cal-head h2{margin:0;font-size:26px;letter-spacing:-.035em}.cal-head small{color:var(--muted)}.cal-nav{display:flex;align-items:center;gap:5px;flex:0 0 auto}.cal-nav button{width:34px;height:34px;padding:0;border:1px solid var(--line);border-radius:10px;background:rgba(120,120,128,.10);color:var(--text);display:grid;place-items:center;font-size:19px;line-height:1;cursor:pointer;transition:background .18s ease,transform .18s ease}.cal-nav button:hover{background:rgba(120,120,128,.18)}.cal-nav button:active{transform:scale(.95)}.cal-nav .home{font-size:15px}.view{display:none}.view.active{display:block}
+.year-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line)}.mini{background:var(--solid);padding:14px;min-height:235px}.mini-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.mini-head button{border:0;background:transparent;color:var(--accent);font-weight:650;cursor:pointer}.weeklabels,.minidays{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}.weeklabels span{text-align:center;color:var(--muted);font-size:9px}.miniday{height:25px;border:0;background:transparent;color:var(--text);border-radius:8px;cursor:pointer;position:relative}.miniday.has:after{content:"";position:absolute;bottom:1px;left:50%;width:4px;height:4px;border-radius:50%;background:var(--accent);transform:translateX(-50%)}.miniday.selected{background:var(--accent);color:white}.miniday.holiday:not(.selected){background:rgba(229,72,77,.12);color:var(--holiday)}
+.month{padding:0 12px 12px}.monthlabels,.monthgrid{display:grid;grid-template-columns:repeat(7,1fr)}.monthlabels div{text-align:center;color:var(--muted);padding:11px 3px;font-size:12px}.cell{min-height:132px;border-top:1px solid var(--line);border-left:1px solid var(--line);padding:7px;overflow:hidden}.cell:nth-child(7n){border-right:1px solid var(--line)}.cell.out{opacity:.32}.cell.selected{outline:2px solid var(--accent);outline-offset:-2px;background:rgba(0,113,227,.04)}.num{font-size:12px;font-weight:700;margin-bottom:4px}.chip{display:block;width:100%;border:0;text-align:left;padding:5px 6px;margin:3px 0;border-radius:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:10px;cursor:pointer;background:rgba(0,113,227,.12);color:var(--event)}.chip.gottesdienst{background:rgba(36,161,72,.12);color:var(--service)}.chip.leitung{background:rgba(124,58,237,.12);color:var(--lead)}.chip.ferien{background:rgba(229,72,77,.12);color:var(--holiday)}.chip.offen{background:rgba(217,119,6,.12);color:var(--open);border:1px dashed currentColor}
+.weekwrap{overflow:auto}.weekgrid{display:grid;grid-template-columns:62px repeat(7,minmax(120px,1fr));min-width:920px}.weekgrid>div{border-right:1px solid var(--line);border-bottom:1px solid var(--line)}.weekhead{padding:10px;text-align:center;background:var(--solid)}.hour{height:58px;padding:5px;color:var(--muted);font-size:10px}.slot{height:58px;padding:3px}.weekevent{width:100%;height:100%;border:0;border-radius:8px;background:rgba(0,113,227,.13);color:var(--accent);font-size:10px;text-align:left;padding:5px;cursor:pointer;overflow:hidden}
+.agenda{padding:18px}.agenda-toolbar{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-bottom:14px}.agenda-toolbar h3{margin:0;font-size:22px}.agenda-list{display:grid;gap:18px}.month-group h4{margin:0 0 8px;font-size:15px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}.agenda-row{display:grid;grid-template-columns:76px 12px minmax(0,1fr) auto;gap:12px;align-items:center;width:100%;border:1px solid var(--line);background:var(--solid);color:var(--text);padding:12px;border-radius:16px;text-align:left;cursor:pointer;margin:7px 0}.agenda-row:hover{border-color:rgba(0,113,227,.35);transform:translateY(-1px)}.agenda-date strong{display:block;font-size:19px}.agenda-date small,.agenda-info p{color:var(--muted);font-size:12px}.dot{width:10px;height:10px;border-radius:50%;background:var(--event)}.dot.gottesdienst{background:var(--service)}.dot.leitung{background:var(--lead)}.dot.ferien{background:var(--holiday)}.dot.offen{background:var(--open)}.agenda-info strong{display:block;font-size:15px}.agenda-info p{margin:3px 0 0}.agenda-arrow{color:var(--muted);font-size:20px}
+.side{position:sticky;top:88px;max-height:calc(100vh - 105px);display:flex;flex-direction:column}.side-cover{height:135px;position:relative}.side-cover img{width:100%;height:100%;object-fit:cover}.side-cover:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent,rgba(0,0,0,.72))}.side-cover h3{position:absolute;z-index:2;left:16px;bottom:12px;color:white;margin:0;font-size:22px}.tools{padding:12px;border-bottom:1px solid var(--line)}.search{width:100%;border:1px solid var(--line);background:rgba(120,120,128,.09);color:var(--text);padding:10px 11px;border-radius:11px;outline:none}.filters{display:flex;gap:5px;overflow:auto;padding-top:8px}.filter{border:1px solid var(--line);background:transparent;color:var(--text);border-radius:999px;padding:6px 8px;font-size:11px;white-space:nowrap;cursor:pointer}.filter.active{background:var(--text);color:var(--bg)}.eventlist{padding:7px;overflow:auto}.eventrow{display:grid;grid-template-columns:52px 1fr;gap:9px;width:100%;border:0;background:transparent;color:var(--text);text-align:left;padding:8px;border-radius:14px;cursor:pointer}.eventrow:hover,.eventrow.active{background:rgba(120,120,128,.12)}.datebox{background:rgba(0,113,227,.12);color:var(--accent);border-radius:11px;text-align:center;padding:5px}.datebox strong{display:block;font-size:18px}.datebox span{font-size:9px;text-transform:uppercase}.eventinfo strong{display:block;font-size:13px}.eventinfo small{color:var(--muted);font-size:11px;line-height:1.35}.empty{padding:25px;text-align:center;color:var(--muted)}
+.detailbar{display:none;padding:14px 16px;border-top:1px solid var(--line);background:var(--solid)}.detailbar.show{display:block}.detailbar h4{margin:0 0 5px}.detailbar p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}.detail-actions{display:flex;gap:7px;margin-top:10px}.smallbtn{border:1px solid var(--line);background:transparent;color:var(--text);padding:7px 9px;border-radius:9px;cursor:pointer;font-size:11px}
+.cta{margin-top:16px;border-radius:28px;padding:58px 22px;text-align:center;background:linear-gradient(135deg,#09090b,#2b2b31);color:white}.cta h2{font-size:clamp(30px,4.5vw,58px);letter-spacing:-.05em;margin:0 0 8px}.cta p{color:#b5b5bb}.cta a{display:inline-block;background:white;color:#111;text-decoration:none;padding:12px 17px;border-radius:999px;font-weight:700;margin-top:8px}footer{text-align:center;color:var(--muted);font-size:12px;padding:24px}
+.modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.46);z-index:50;padding:16px}.modal.open{display:grid}.modalcard{width:min(560px,100%);padding:22px;border-radius:24px;position:relative}.modalcard h3{font-size:28px;margin:14px 40px 8px 0}.close{position:absolute;right:13px;top:13px}.tag{display:inline-block;padding:5px 8px;border-radius:999px;background:rgba(0,113,227,.12);color:var(--accent);font-size:11px}.meta{color:var(--muted);line-height:1.6}.modalactions{display:flex;gap:8px;margin-top:16px}
+@media(max-width:1260px){.year-grid{grid-template-columns:repeat(3,1fr)}.workspace{grid-template-columns:minmax(0,1fr) 350px}}
+@media(max-width:1000px){.workspace{grid-template-columns:1fr}.side{position:static;max-height:none}.eventlist{max-height:520px}.year-grid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.page{padding:8px}.topbar{top:5px;flex-wrap:wrap}.brand small{display:none}.views{order:3;width:100%;justify-content:space-between}.views button{flex:1;padding:7px 5px;font-size:11px}.hero{height:290px}.hero h1{font-size:45px}.year-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.cell{min-height:86px;padding:4px}.chip{font-size:8px;padding:3px}.agenda-row{grid-template-columns:64px 10px 1fr}.agenda-arrow{display:none}.actions .primary{display:none}}
+@media print{.topbar,.hero,.side,.cta,.cal-nav,.actions{display:none!important}.page{max-width:none;padding:0}.workspace{display:block}.calendar{box-shadow:none;border:0}.view{display:none!important}#agendaView{display:block!important}.agenda-row{break-inside:avoid}.glass{background:white;box-shadow:none}}
+</style>
+
+<style id="gf-v3-polish">
+:root{
+  --bg:#f4f4f6;
+  --surface:rgba(255,255,255,.94);
+  --solid:#fff;
+  --text:#171719;
+  --muted:#6e6e73;
+  --line:rgba(0,0,0,.075);
+  --accent:#0a84ff;
+  --shadow:0 14px 42px rgba(0,0,0,.075);
+  --r:26px;
+}
+[data-theme=dark]{
+  --bg:#0a0a0c;
+  --surface:rgba(28,28,30,.94);
+  --solid:#1c1c1e;
+  --text:#f5f5f7;
+  --muted:#a1a1a6;
+  --line:rgba(255,255,255,.10);
+  --shadow:0 18px 48px rgba(0,0,0,.38);
+}
+body{
+  background:
+    radial-gradient(circle at 20% -10%,rgba(10,132,255,.07),transparent 30%),
+    var(--bg)!important;
+  line-height:1.45;
+  overflow-x:hidden;
+}
+.page{
+  max-width:1660px!important;
+  padding:18px 22px 34px!important;
+}
+.glass{
+  border:1px solid var(--line)!important;
+  box-shadow:var(--shadow)!important;
+}
+.topbar{
+  top:14px!important;
+  min-height:74px;
+  padding:12px 14px!important;
+  border-radius:24px!important;
+  background:var(--surface)!important;
+  gap:20px!important;
+}
+.brand{
+  min-width:285px;
+  gap:12px!important;
+}
+.brand img{
+  width:46px!important;
+  height:46px!important;
+  border-radius:50%!important;
+  padding:4px!important;
+  object-fit:contain!important;
+  background:#fff!important;
+  border:1px solid rgba(0,0,0,.06);
+}
+.brand strong{
+  font-size:16px!important;
+  letter-spacing:-.015em;
+}
+.brand small{
+  margin-top:2px;
+  font-size:12px!important;
+}
+.views{
+  gap:3px!important;
+  padding:4px!important;
+  border-radius:15px!important;
+}
+.views button{
+  padding:9px 14px!important;
+  border-radius:11px!important;
+}
+.actions{gap:7px!important}
+.actions .icon{
+  width:40px!important;
+  height:40px!important;
+  padding:0!important;
+  display:grid;
+  place-items:center;
+}
+.actions .primary{
+  padding:10px 15px!important;
+  border-radius:12px!important;
+}
+
+.hero{
+  height:390px!important;
+  margin:22px 0!important;
+  border-radius:34px!important;
+  box-shadow:0 24px 54px rgba(0,0,0,.14);
+}
+.hero img{
+  object-position:center 44%!important;
+  filter:saturate(.94) contrast(1.02);
+}
+.hero:after{
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.80) 0%,rgba(0,0,0,.55) 42%,rgba(0,0,0,.08) 80%)!important;
+}
+.hero-copy{
+  left:clamp(30px,5vw,76px)!important;
+  max-width:690px!important;
+}
+.hero h1{
+  font-size:clamp(48px,5.2vw,78px)!important;
+  letter-spacing:-.06em!important;
+  margin:13px 0 16px!important;
+}
+.hero p{
+  max-width:630px!important;
+  font-size:16px!important;
+  line-height:1.55!important;
+}
+.eyebrow{
+  padding:7px 11px!important;
+  border:1px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(10px);
+}
+
+.stats{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:14px!important;
+  margin-bottom:22px!important;
+}
+.stat{
+  min-height:116px;
+  padding:19px 20px!important;
+  border-radius:22px!important;
+}
+.stat strong{
+  font-size:30px!important;
+  margin:7px 0 5px!important;
+  line-height:1;
+}
+
+.workspace{
+  grid-template-columns:minmax(0,1fr) 390px!important;
+  gap:22px!important;
+}
+.calendar,.side{
+  border-radius:30px!important;
+}
+.cal-head{
+  min-height:84px;
+  padding:18px 22px!important;
+}
+.cal-head h2{
+  font-size:30px!important;
+}
+.cal-head small{
+  display:block;
+  margin-top:4px;
+}
+.cal-nav{
+  gap:7px!important;
+}
+.cal-nav button{
+  width:38px!important;
+  height:38px!important;
+  border-radius:12px!important;
+}
+
+.year-grid{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+}
+.mini{
+  min-height:258px!important;
+  padding:18px!important;
+}
+.mini-head{
+  margin-bottom:13px!important;
+}
+.mini-head strong{
+  font-size:16px!important;
+}
+.weeklabels,.minidays{
+  gap:5px!important;
+}
+.weeklabels span{
+  font-size:10px!important;
+  margin-bottom:2px;
+}
+.miniday{
+  height:29px!important;
+  border-radius:9px!important;
+  font-size:12px!important;
+}
+.month{
+  padding:0 18px 18px!important;
+}
+.monthlabels div{
+  padding:14px 4px!important;
+}
+.cell{
+  min-height:136px!important;
+  padding:9px!important;
+}
+.chip{
+  margin:4px 0!important;
+  padding:6px 7px!important;
+  border-radius:8px!important;
+}
+.agenda{
+  padding:22px!important;
+}
+.agenda-list{
+  gap:22px!important;
+}
+.agenda-row{
+  padding:14px!important;
+  margin:8px 0!important;
+  border-radius:18px!important;
+}
+.side{
+  top:104px!important;
+  max-height:calc(100vh - 122px)!important;
+}
+.side-cover{
+  height:170px!important;
+}
+.side-cover img{
+  object-position:center 42%;
+}
+.side-cover h3{
+  left:18px!important;
+  bottom:16px!important;
+  font-size:26px!important;
+}
+.tools{
+  padding:14px!important;
+}
+.search{
+  padding:11px 12px!important;
+  border-radius:12px!important;
+}
+.filters{
+  gap:6px!important;
+  padding-top:10px!important;
+}
+.filter{
+  padding:7px 10px!important;
+}
+.eventlist{
+  padding:9px!important;
+}
+.eventrow{
+  grid-template-columns:56px 1fr!important;
+  gap:11px!important;
+  padding:10px!important;
+  border-radius:16px!important;
+}
+.datebox{
+  padding:7px 5px!important;
+  border-radius:12px!important;
+}
+.datebox strong{
+  font-size:20px!important;
+}
+.eventinfo strong{
+  font-size:13px!important;
+  line-height:1.3;
+}
+.eventinfo small{
+  display:block;
+  margin-top:3px;
+}
+.detailbar{
+  padding:16px 18px!important;
+}
+.cta{
+  margin-top:22px!important;
+  padding:64px 26px!important;
+  border-radius:32px!important;
+}
+footer{
+  padding:28px 12px!important;
+}
+
+@media(max-width:1250px){
+  .workspace{grid-template-columns:minmax(0,1fr) 340px!important}
+  .year-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  .brand{min-width:auto}
+}
+@media(max-width:980px){
+  .topbar{flex-wrap:wrap!important}
+  .brand{flex:1}
+  .views{order:3;width:100%;justify-content:center}
+  .actions .primary{display:none}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .workspace{grid-template-columns:1fr!important}
+  .side{
+    position:relative!important;
+    top:auto!important;
+    max-height:none!important;
+  }
+  .eventlist{max-height:520px}
+  .year-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:620px){
+  .page{padding:10px!important}
+  .topbar{
+    top:8px!important;
+    border-radius:19px!important;
+    padding:10px!important;
+  }
+  .brand img{width:40px!important;height:40px!important}
+  .brand strong{font-size:15px!important}
+  .brand small{font-size:11px!important}
+  .actions{margin-left:auto}
+  .hero{
+    height:420px!important;
+    margin:14px 0!important;
+    border-radius:25px!important;
+  }
+  .hero:after{
+    background:linear-gradient(0deg,rgba(0,0,0,.82),rgba(0,0,0,.16) 82%)!important;
+  }
+  .hero-copy{
+    left:22px!important;
+    right:22px!important;
+    top:auto!important;
+    bottom:28px!important;
+    transform:none!important;
+  }
+  .hero h1{font-size:46px!important}
+  .hero p{font-size:14px!important}
+  .stats{grid-template-columns:1fr 1fr!important;gap:9px!important}
+  .stat{min-height:104px;padding:15px!important}
+  .stat strong{font-size:26px!important}
+  .calendar,.side{border-radius:22px!important}
+  .cal-head{padding:15px!important;min-height:auto}
+  .cal-head h2{font-size:24px!important}
+  .year-grid{grid-template-columns:1fr!important}
+  .mini{min-height:auto!important}
+  .month{padding:0 7px 8px!important}
+  .cell{min-height:92px!important;padding:5px!important}
+  .chip{font-size:9px!important;padding:4px!important}
+}
+</style>
+
+
+<style id="gf-supabase-form">
+.event-form-modal{
+  position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;
+  padding:20px;background:rgba(0,0,0,.38);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)
+}
+.event-form-modal.open{display:flex}
+.event-form-card{
+  width:min(760px,100%);max-height:92vh;overflow:auto;background:var(--solid);
+  border:1px solid var(--line);border-radius:28px;box-shadow:0 30px 90px rgba(0,0,0,.24);padding:24px
+}
+.event-form-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:22px}
+.event-form-head h2{margin:0 0 5px;font-size:30px;letter-spacing:-.035em}
+.event-form-head p{margin:0;color:var(--muted);font-size:14px}
+.event-form-close{
+  flex:0 0 auto;width:38px;height:38px;border:0;border-radius:50%;background:var(--bg);color:var(--text);
+  cursor:pointer;font-size:22px
+}
+.event-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.event-form-grid .wide{grid-column:1/-1}
+.event-form-field label{display:block;margin:0 0 7px;font-size:13px;font-weight:600}
+.event-form-field input,.event-form-field select,.event-form-field textarea{
+  width:100%;border:1px solid var(--line);border-radius:13px;background:var(--bg);color:var(--text);
+  padding:11px 12px;outline:none;font:inherit
+}
+.event-form-field textarea{min-height:105px;resize:vertical}
+.event-form-field input:focus,.event-form-field select:focus,.event-form-field textarea:focus{
+  border-color:var(--accent);box-shadow:0 0 0 3px rgba(10,132,255,.13)
+}
+.event-form-actions{display:flex;justify-content:flex-end;align-items:center;gap:9px;margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+.event-form-actions button{border:0;border-radius:12px;padding:11px 16px;cursor:pointer;font-weight:600}
+.event-form-cancel{background:var(--bg);color:var(--text)}
+.event-form-save{background:var(--accent);color:white}
+.event-form-save[disabled]{opacity:.55;cursor:wait}
+.form-status{margin-right:auto;font-size:13px;color:var(--muted)}
+.pending-note{
+  margin:0 0 18px;padding:12px 14px;border-radius:14px;background:rgba(255,159,10,.10);
+  color:var(--text);font-size:13px;border:1px solid rgba(255,159,10,.18)
+}
+.live-badge{
+  display:inline-flex;align-items:center;gap:6px;margin-left:8px;padding:5px 9px;border-radius:999px;
+  font-size:11px;background:rgba(52,199,89,.11);color:#248a3d
+}
+.live-badge.offline{background:rgba(255,159,10,.11);color:#b26a00}
+@media(max-width:640px){
+  .event-form-modal{padding:10px;align-items:flex-end}
+  .event-form-card{border-radius:24px 24px 16px 16px;padding:18px;max-height:94vh}
+  .event-form-grid{grid-template-columns:1fr}
+  .event-form-grid .wide{grid-column:auto}
+  .event-form-head h2{font-size:25px}
+  .event-form-actions{position:sticky;bottom:-18px;background:var(--solid);padding-bottom:4px}
+}
+</style>
+
+
+<style id="gf-pending-styles">
+.chip.pending{
+  background:transparent!important;
+  border:1.5px dashed currentColor!important;
+  opacity:.9;
+}
+.eventrow.pending,.agenda-row.pending{
+  border:1.5px dashed rgba(255,159,10,.62)!important;
+  background:rgba(255,159,10,.055)!important;
+}
+.pending-badge{
+  display:inline-flex;align-items:center;gap:5px;margin-top:5px;
+  padding:3px 7px;border-radius:999px;border:1px dashed currentColor;
+  color:#b26a00;font-size:10px;font-weight:700;letter-spacing:.02em
+}
+[data-theme=dark] .pending-badge{color:#ffd60a}
+.miniday.pending-day{
+  outline:1.5px dashed rgba(255,159,10,.8);
+  outline-offset:-2px;
+}
+</style>
+
+
+<style id="gf-v7-admin">
+#evOtherLocationWrap[hidden]{display:none!important}
+.admin-modal{
+  position:fixed;inset:0;z-index:130;display:none;align-items:center;justify-content:center;
+  padding:20px;background:rgba(0,0,0,.46);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)
+}
+.admin-modal.open{display:flex}
+.admin-card{
+  width:min(980px,100%);max-height:92vh;overflow:auto;background:var(--solid);color:var(--text);
+  border:1px solid var(--line);border-radius:28px;box-shadow:0 30px 100px rgba(0,0,0,.28);padding:24px
+}
+.admin-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:20px}
+.admin-head h2{margin:0;font-size:30px;letter-spacing:-.035em}
+.admin-head p{margin:5px 0 0;color:var(--muted);font-size:14px}
+.admin-close{width:38px;height:38px;border:0;border-radius:50%;background:var(--bg);color:var(--text);font-size:22px;cursor:pointer}
+.admin-login{max-width:480px;margin:10px auto 4px}
+.admin-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:20px}
+.admin-section{border:1px solid var(--line);border-radius:20px;padding:16px;background:var(--bg)}
+.admin-section h3{margin:0 0 12px;font-size:17px}
+.admin-field{margin-bottom:12px}
+.admin-field label{display:block;margin-bottom:6px;font-size:13px;font-weight:600}
+.admin-field input,.admin-field select{
+  width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:var(--solid);color:var(--text);font:inherit
+}
+.admin-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.admin-primary,.admin-secondary,.admin-danger,.admin-approve{
+  border:0;border-radius:11px;padding:10px 13px;font-weight:700;cursor:pointer
+}
+.admin-primary,.admin-approve{background:var(--accent);color:#fff}
+.admin-secondary{background:var(--solid);color:var(--text);border:1px solid var(--line)}
+.admin-danger{background:rgba(255,59,48,.11);color:#d70015}
+.admin-status{font-size:13px;color:var(--muted);margin-top:10px}
+.proposal-list{display:grid;gap:10px}
+.proposal-card{
+  border:1.5px dashed rgba(255,159,10,.55);border-radius:16px;padding:13px;background:rgba(255,159,10,.055)
+}
+.proposal-card strong{display:block;margin-bottom:4px}
+.proposal-card small{color:var(--muted);display:block;margin-bottom:10px}
+.category-list{display:grid;gap:8px;margin-top:12px}
+.category-admin-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 11px;border-radius:12px;background:var(--solid);border:1px solid var(--line)}
+.admin-userbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;padding:10px 12px;border-radius:14px;background:var(--bg)}
+.admin-hidden{display:none!important}
+@media(max-width:760px){
+  .admin-modal{padding:8px;align-items:flex-end}
+  .admin-card{border-radius:24px 24px 14px 14px;padding:17px}
+  .admin-grid{grid-template-columns:1fr}
+  .admin-head h2{font-size:25px}
+}
+</style>
+
+
+<style id="gf-v12-internal">
+
+.internal-only-badge{
+  display:inline-flex;align-items:center;gap:6px;padding:6px 9px;border-radius:999px;
+  background:rgba(52,199,89,.11);color:#248a3d;font-size:11px;font-weight:700
+}
+
+/* Better filter strip */
+.category-filterbar{
+  display:flex;flex-wrap:wrap;gap:8px;padding:12px 0 16px
+}
+.category-toggle{
+  border:1px solid var(--line);background:var(--solid);color:var(--text);
+  border-radius:999px;padding:8px 12px;display:inline-flex;align-items:center;gap:8px;
+  cursor:pointer;font-weight:650;font-size:13px
+}
+.category-toggle[aria-pressed="false"]{opacity:.45}
+.category-swatch{width:10px;height:10px;border-radius:50%;display:inline-block}
+
+/* Category colors */
+:root{
+  --cat-event:#0a84ff;
+  --cat-gottesdienst:#7d5cff;
+  --cat-leitung:#ff9f0a;
+  --cat-ferien:#ff453a;
+}
+.dot.event,.chip.event{color:var(--cat-event)!important}
+.dot.gottesdienst,.chip.gottesdienst{color:var(--cat-gottesdienst)!important}
+.dot.leitung,.chip.leitung{color:var(--cat-leitung)!important}
+.dot.ferien,.chip.ferien{color:var(--cat-ferien)!important}
+.chip.event{background:color-mix(in srgb,var(--cat-event) 12%, transparent)!important}
+.chip.gottesdienst{background:color-mix(in srgb,var(--cat-gottesdienst) 12%, transparent)!important}
+.chip.leitung{background:color-mix(in srgb,var(--cat-leitung) 12%, transparent)!important}
+.chip.ferien{background:color-mix(in srgb,var(--cat-ferien) 12%, transparent)!important}
+
+/* Simpler proposal form */
+.event-form-card{width:min(800px,100%)!important}
+.event-form-grid{gap:14px!important}
+.event-form-field input[type="date"],
+.event-form-field input[type="time"]{
+  min-height:52px;font-size:17px;background:var(--bg)
+}
+.quick-time-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.quick-time{
+  border:1px solid var(--line);border-radius:10px;background:var(--solid);color:var(--text);
+  padding:7px 10px;cursor:pointer;font-size:12px;font-weight:650
+}
+.quick-time:hover{border-color:var(--accent)}
+.form-section-title{
+  grid-column:1/-1;margin:4px 0 -2px;font-size:12px;font-weight:800;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--muted)
+}
+.form-helper{font-size:11px;color:var(--muted);margin-top:5px}
+@media(max-width:640px){
+  .category-filterbar{overflow-x:auto;flex-wrap:nowrap;padding-bottom:10px}
+  .category-toggle{white-space:nowrap}
+}
+</style>
+
+
+<style id="gf-v14-ui-admin">
+/* Navigation: no cryptic icons */
+.month-nav,.calendar-nav,.nav-arrows{gap:8px!important}
+.month-nav button,.calendar-nav button,.nav-arrows button{
+  min-width:auto!important;height:38px!important;padding:0 14px!important;
+  border-radius:12px!important;font-size:13px!important;font-weight:700!important
+}
+
+/* Category-colored cards in event overview */
+.event-row[data-category="event"] .datebox,
+.event-item[data-category="event"] .datebox{background:#e7f2ff!important;color:#0a84ff!important}
+.event-row[data-category="gottesdienst"] .datebox,
+.event-item[data-category="gottesdienst"] .datebox{background:#efeaff!important;color:#6e52d9!important}
+.event-row[data-category="leitung"] .datebox,
+.event-item[data-category="leitung"] .datebox{background:#fff1d8!important;color:#c87500!important}
+.event-row[data-category="ferien"] .datebox,
+.event-item[data-category="ferien"] .datebox{background:#ffe9e7!important;color:#d9382e!important}
+.event-row[data-category="offen"] .datebox,
+.event-item[data-category="offen"] .datebox{background:#e9eaed!important;color:#555!important}
+.event-row,.event-item{border-radius:16px!important;transition:.16s ease}
+.event-row:hover,.event-item:hover{background:rgba(127,127,127,.06)}
+.event-row .datebox,.event-item .datebox{border-radius:14px!important}
+
+/* Admin entry button */
+.admin-entry{
+  display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);
+  background:var(--solid);color:var(--text);border-radius:999px;padding:8px 13px;
+  font-size:12px;font-weight:750;cursor:pointer;text-decoration:none
+}
+.admin-entry:hover{border-color:var(--accent);color:var(--accent)}
+
+/* Admin modal */
+.admin-shell{
+  position:fixed;inset:0;z-index:650;background:rgba(0,0,0,.42);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  display:none;align-items:center;justify-content:center;padding:18px
+}
+.admin-shell.open{display:flex}
+.admin-card{
+  width:min(980px,100%);max-height:92vh;overflow:auto;background:var(--solid);
+  border:1px solid var(--line);border-radius:28px;box-shadow:0 30px 100px rgba(0,0,0,.25)
+}
+.admin-head{
+  position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;
+  padding:20px 22px;border-bottom:1px solid var(--line);background:var(--solid)
+}
+.admin-head h2{margin:0;font-size:22px;letter-spacing:-.03em}
+.admin-close{border:0;background:var(--bg);color:var(--text);border-radius:50%;width:38px;height:38px;font-size:20px;cursor:pointer}
+.admin-login{padding:24px;max-width:520px;margin:auto}
+.admin-login h3{margin:0 0 5px;font-size:18px}
+.admin-login p{margin:0 0 18px;color:var(--muted);font-size:13px}
+.admin-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.admin-field label{display:block;font-size:12px;font-weight:750;margin:0 0 6px}
+.admin-field input{
+  width:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:13px;
+  background:var(--bg);color:var(--text);padding:12px 13px;font:inherit
+}
+.admin-actions{display:flex;gap:9px;align-items:center;margin-top:15px}
+.admin-primary{
+  border:0;border-radius:13px;background:var(--accent);color:white;padding:11px 16px;
+  font-weight:750;cursor:pointer
+}
+.admin-secondary{
+  border:1px solid var(--line);border-radius:13px;background:var(--solid);color:var(--text);
+  padding:10px 15px;font-weight:700;cursor:pointer
+}
+.admin-status{margin-top:12px;color:var(--muted);font-size:12px;min-height:18px}
+.admin-dashboard{display:none;padding:22px}
+.admin-dashboard.visible{display:block}
+.admin-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.admin-tab{
+  border:1px solid var(--line);background:var(--solid);color:var(--text);
+  border-radius:999px;padding:8px 12px;font-weight:700;cursor:pointer
+}
+.admin-tab.active{background:var(--text);color:var(--solid)}
+.admin-panel{border:1px solid var(--line);border-radius:18px;padding:18px}
+.admin-panel h3{margin:0 0 5px}
+.admin-panel p{color:var(--muted);font-size:13px;margin:0 0 14px}
+.admin-list{display:grid;gap:10px}
+.admin-proposal{
+  display:grid;grid-template-columns:1fr auto;gap:12px;padding:14px;border:1px solid var(--line);
+  border-radius:15px;background:var(--bg)
+}
+.admin-proposal strong{display:block;margin-bottom:3px}
+.admin-proposal small{color:var(--muted)}
+.admin-proposal-actions{display:flex;gap:7px;align-items:center}
+.admin-mini{border:1px solid var(--line);background:var(--solid);color:var(--text);border-radius:10px;padding:7px 9px;font-weight:700;cursor:pointer}
+.admin-mini.publish{background:#e8f7ed;color:#248a3d;border-color:#ccebd5}
+.admin-mini.reject{background:#fff0ef;color:#c9342d;border-color:#f4d3d0}
+.category-admin-row{display:grid;grid-template-columns:42px 1fr auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.category-color{width:34px;height:34px;border:0;border-radius:10px;padding:2px;background:transparent}
+@media(max-width:640px){
+  .admin-form-grid{grid-template-columns:1fr}
+  .admin-proposal{grid-template-columns:1fr}
+  .admin-proposal-actions{justify-content:flex-start}
+}
+</style>
+
+
+<style id="gf-v15-clean-admin">
+/* Alte nackte Login-Controls sicher verstecken */
+body > form,
+body > input[type="password"],
+body > input[type="email"]{
+  display:none!important;
+}
+
+/* Textnavigation statt Icons */
+.cal-nav button,
+.actions button,
+.admin-entry{
+  width:auto!important;
+  min-width:74px!important;
+  height:38px!important;
+  padding:0 13px!important;
+  font-size:12px!important;
+  font-weight:750!important;
+  border-radius:11px!important;
+}
+.admin-entry{
+  position:fixed!important;
+  right:18px!important;
+  bottom:18px!important;
+  z-index:320!important;
+  background:var(--text)!important;
+  color:var(--solid)!important;
+  border:1px solid var(--text)!important;
+  box-shadow:0 8px 26px rgba(0,0,0,.12);
+}
+
+/* Rechte Eventliste: Kategorie sichtbar + unterschiedliche Farben */
+.eventrow{
+  position:relative;
+  border:1px solid transparent!important;
+}
+.eventrow::after{
+  content:attr(data-category-label);
+  position:absolute;
+  right:12px;
+  top:10px;
+  border-radius:999px;
+  padding:3px 7px;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+}
+.eventrow[data-category="event"]{
+  background:rgba(10,132,255,.055)!important;
+  border-color:rgba(10,132,255,.12)!important;
+}
+.eventrow[data-category="event"] .datebox{background:#e8f3ff!important;color:#0a84ff!important}
+.eventrow[data-category="event"]::after{content:"Event";background:#e8f3ff;color:#0a84ff}
+
+.eventrow[data-category="gottesdienst"]{
+  background:rgba(125,92,255,.055)!important;
+  border-color:rgba(125,92,255,.12)!important;
+}
+.eventrow[data-category="gottesdienst"] .datebox{background:#f0ebff!important;color:#6e52d9!important}
+.eventrow[data-category="gottesdienst"]::after{content:"Gottesdienst";background:#f0ebff;color:#6e52d9}
+
+.eventrow[data-category="leitung"]{
+  background:rgba(255,159,10,.06)!important;
+  border-color:rgba(255,159,10,.13)!important;
+}
+.eventrow[data-category="leitung"] .datebox{background:#fff1d8!important;color:#c87500!important}
+.eventrow[data-category="leitung"]::after{content:"Leitertermin";background:#fff1d8;color:#c87500}
+
+.eventrow[data-category="ferien"]{
+  background:rgba(255,69,58,.05)!important;
+  border-color:rgba(255,69,58,.12)!important;
+}
+.eventrow[data-category="ferien"] .datebox{background:#ffe9e7!important;color:#d9382e!important}
+.eventrow[data-category="ferien"]::after{content:"Ferien";background:#ffe9e7;color:#d9382e}
+
+/* Loginmodal sicher und sauber */
+#adminShell{
+  display:none;
+}
+#adminShell.open{
+  display:flex!important;
+}
+#adminLoginView{
+  display:block;
+}
+#adminDashboard{
+  display:none;
+}
+#adminDashboard.visible{
+  display:block!important;
+}
+</style>
+
+
+<style id="gf-v16-open-calendar">
+/* Kalender ist immer öffentlich sichtbar */
+#internalGate,.internal-gate,.login-gate,.auth-gate{display:none!important}
+body > form:not(#eventForm){display:none!important}
+
+/* Alte nackte Loginfelder außerhalb des Admin-Modals verstecken */
+body > input[type="email"],
+body > input[type="password"],
+body > label{display:none!important}
+
+/* Admin bleibt optional über eigenen Button erreichbar */
+#adminShell{display:none!important}
+#adminShell.open{display:flex!important}
+
+/* Navigation nur mit Text */
+.cal-nav .icon,
+.actions .icon,
+.nav-arrows .icon{
+  width:auto!important;
+  min-width:84px!important;
+  padding:0 14px!important;
+}
+</style>
+
+
+<style id="gf-v16-category-admin">
+.category-admin-row{
+  grid-template-columns:42px minmax(150px,1fr) auto!important;
+}
+.category-name-input{
+  width:100%;
+  box-sizing:border-box;
+  border:1px solid var(--line);
+  border-radius:11px;
+  background:var(--solid);
+  color:var(--text);
+  padding:9px 10px;
+  font:inherit;
+  font-weight:700;
+}
+</style>
+
 </head>
 <body>
-<header class="topbar">
-  <div class="topbar-inner">
-    <img src="logo.webp" class="logo" alt="Gospel Youth">
-    <div class="top-actions">
-      <a id="igTop" class="social-icon social-img" target="_blank" title="Instagram" aria-label="Instagram"><img src="instagram.jpg" alt=""></a>
-      <a id="ttTop" class="social-icon social-img" target="_blank" title="TikTok" aria-label="TikTok"><img src="tiktok.webp" alt=""></a>
-      <button class="text-btn" onclick="openAdmin()">Admin</button>
-      <button class="round-btn" onclick="toggleTheme()" aria-label="Darstellung wechseln">◐</button>
-    </div>
-  </div>
-</header>
+<button type="button" class="admin-entry" id="openAdmin">Admin anmelden</button>
 
-<main>
-  <section class="event-hero">
-    <div class="eyebrow">Gospel Youth Mission Control</div>
-    <h1 id="eventTitle">Sommerfestival 2026</h1>
-    <div id="eventSubtitle" class="event-subtitle">Heaven Now</div>
-    <p id="eventIntro">Daten werden geladen …</p>
-  </section>
 
-  <div id="connectionStatus" class="status-banner">Mit Supabase verbinden …</div>
-
-  <section class="day-select-section">
-    <div class="section-label">Tag auswählen</div>
-    <div id="dayStrip" class="day-strip"></div>
-  </section>
-
-  <section class="category-wrap">
-    <button class="category active" data-category="all" onclick="setCategory('all',this)">Gesamt</button>
-    <button class="category" data-category="story" onclick="setCategory('story',this)">Stories</button>
-    <button class="category" data-category="photo" onclick="setCategory('photo',this)">Fotograf</button>
-    <button class="category" data-category="reel" onclick="setCategory('reel',this)">Reels</button>
-    <button class="category" data-category="interview" onclick="setCategory('interview',this)">Interviews</button>
-  </section>
-
-  <section id="goalsCard" class="goals-card glass"></section>
-  <section id="summaryCard" class="summary-card glass"></section>
-  <section id="assignmentOverview" class="assignment-overview"></section>
-  <section id="dayparts"></section>
-
-  <section id="teamDirectory" class="public-section"></section>
-  <section id="mySchedule" class="public-section"></section>
-
-  <footer>Social Media Contentplan · Created by Ebenezer Agonafer</footer>
-</main>
-
-<div id="adminOverlay" class="overlay hidden">
-  <div class="admin-shell">
-    <div class="admin-header">
-      <div><div class="eyebrow">Adminbereich</div><h2>Verwaltung</h2></div>
-      <button class="round-btn" onclick="closeAdmin()">×</button>
-    </div>
-
-    <div id="adminLogin" class="admin-login glass">
-      <h3>Anmelden</h3>
-      <p>Nutze deinen Supabase-Admin-Account.</p>
-      <label>E-Mail<input id="adminEmail" type="email" autocomplete="username"></label>
-      <label>Passwort<input id="adminPassword" type="password" autocomplete="current-password"></label>
-      <button class="primary-btn" onclick="loginAdmin()">Anmelden</button>
-      <small id="loginMessage"></small>
-    </div>
-
-    <div id="adminApp" class="hidden">
-      <div class="admin-userbar">
-        <span id="adminUser"></span>
-        <button class="secondary-btn compact" onclick="logoutAdmin()">Abmelden</button>
+      
+        <div class="admin-field">
+          <label for="adminPassword">Passwort</label>
+          <input id="adminPassword" type="password" autocomplete="current-password" placeholder="Passwort">
+        </div>
       </div>
-      <div class="admin-tabs">
-        <button class="admin-tab active" onclick="showAdminTab('overview',this)">Übersicht</button>
-        <button class="admin-tab" onclick="showAdminTab('program',this)">Programm</button>
-        <button class="admin-tab" onclick="showAdminTab('content',this)">Content</button>
-        <button class="admin-tab" onclick="showAdminTab('tasks',this)">Aufgaben</button>
-        <button class="admin-tab" onclick="showAdminTab('team',this)">Team</button>
-        <button class="admin-tab" onclick="showAdminTab('goals',this)">Tagesziele</button>
-        <button class="admin-tab" onclick="showAdminTab('settings',this)">Einstellungen</button>
+      <div class="admin-actions">
+        <button class="admin-primary" id="adminLoginBtn" type="button">Anmelden</button>
+        <button class="admin-secondary" id="adminCancelBtn" type="button">Abbrechen</button>
       </div>
-      <div id="admin-overview" class="admin-panel active"></div>
-      <div id="admin-program" class="admin-panel"></div>
-      <div id="admin-content" class="admin-panel"></div>
-      <div id="admin-tasks" class="admin-panel"></div>
-      <div id="admin-team" class="admin-panel"></div>
-      <div id="admin-goals" class="admin-panel"></div>
-      <div id="admin-settings" class="admin-panel"></div>
+      <div class="admin-status" id="adminStatus"></div>
     </div>
-  </div>
+
+    <div class="admin-dashboard" id="adminDashboard">
+      <div class="admin-toolbar">
+        <button class="admin-tab active" type="button" data-admin-tab="proposals">Terminvorschläge</button>
+        <button class="admin-tab" type="button" data-admin-tab="categories">Kategorien</button>
+        <button class="admin-secondary" id="adminLogoutBtn" type="button" style="margin-left:auto">Abmelden</button>
+      </div>
+
+      <div class="admin-panel" id="adminPanelProposals">
+        <h3>Offene Terminvorschläge</h3>
+        <p>Vorschläge können veröffentlicht oder abgelehnt werden.</p>
+        <div class="admin-list" id="adminProposalList"><div class="admin-status">Noch nicht geladen.</div></div>
+      </div>
+
+      <div class="admin-panel" id="adminPanelCategories" style="display:none">
+        <h3>Kategorien verwalten</h3>
+        <p>Bezeichnung und Farbe der Kategorien können hier geändert werden.</p>
+        <div id="adminCategoryList">
+          <div class="category-admin-row" data-cat-admin="event">
+            <input class="category-color" type="color" value="#0a84ff" data-css-var="--cat-event">
+            <input class="category-name-input" type="text" value="Events" data-cat-name="event">
+            <span>Event</span>
+          </div>
+          <div class="category-admin-row" data-cat-admin="gottesdienst">
+            <input class="category-color" type="color" value="#7d5cff" data-css-var="--cat-gottesdienst">
+            <input class="category-name-input" type="text" value="Gottesdienste" data-cat-name="gottesdienst">
+            <span>Gottesdienst</span>
+          </div>
+          <div class="category-admin-row" data-cat-admin="leitung">
+            <input class="category-color" type="color" value="#ff9f0a" data-css-var="--cat-leitung">
+            <input class="category-name-input" type="text" value="Leitertermine" data-cat-name="leitung">
+            <span>Leitung</span>
+          </div>
+          <div class="category-admin-row" data-cat-admin="ferien">
+            <input class="category-color" type="color" value="#ff453a" data-css-var="--cat-ferien">
+            <input class="category-name-input" type="text" value="Ferien" data-cat-name="ferien">
+            <span>Ferien</span>
+          </div>
+        </div>
+        <div class="admin-actions">
+          <button class="admin-primary" id="saveCategoryNamesBtn" type="button">Kategorien speichern</button>
+        </div>
+        <div class="admin-status" id="categoryAdminStatus"></div>
+      </div>
+    </div>
+  </section>
 </div>
 
-<div id="formModal" class="overlay hidden">
-  <div class="form-sheet">
-    <div class="form-head">
-      <h3 id="formTitle">Bearbeiten</h3>
-      <button class="round-btn" onclick="closeForm()">×</button>
-    </div>
-    <div id="formBody"></div>
-    <div id="formError" class="form-error hidden"></div>
-    <div class="form-actions">
-      <button class="secondary-btn" onclick="closeForm()">Abbrechen</button>
-      <button id="saveButton" class="primary-btn" onclick="saveForm()">Speichern</button>
-    </div>
-  </div>
-</div>
 
-<div id="imageViewer" class="image-viewer hidden" onclick="closeImageViewer()">
-  <div class="image-viewer-inner" onclick="event.stopPropagation()">
-    <button class="round-btn image-close" onclick="closeImageViewer()">×</button>
-    <img id="viewerImage" alt="">
-    <p id="viewerCaption"></p>
-  </div>
-</div>
+<script id="gf-v14-admin-js">
+(function(){
+  const $q=(s,r=document)=>r.querySelector(s);
+  const $$q=(s,r=document)=>Array.from(r.querySelectorAll(s));
+  const shell=$q('#adminShell'), loginView=$q('#adminLoginView'), dash=$q('#adminDashboard');
+  let adminSession=null;
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="config.js"></script>
-<script src="app.js"></script>
+  function openAdmin(){ shell.classList.add('open'); shell.setAttribute('aria-hidden','false'); }
+  function closeAdmin(){ shell.classList.remove('open'); shell.setAttribute('aria-hidden','true'); }
+  $q('#openAdmin')?.addEventListener('click',openAdmin);
+  $q('#closeAdmin')?.addEventListener('click',closeAdmin);
+  $q('#adminCancelBtn')?.addEventListener('click',closeAdmin);
+  shell?.addEventListener('click',e=>{if(e.target===shell)closeAdmin()});
+
+  async function login(){
+    const status=$q('#adminStatus');
+    const email=$q('#adminEmail').value.trim(), password=$q('#adminPassword').value;
+    if(!email||!password){status.textContent='Bitte E-Mail-Adresse und Passwort eingeben.';return}
+    status.textContent='Anmeldung läuft …';
+    try{
+      const res=await fetch(SUPABASE_URL+'/auth/v1/token?grant_type=password',{
+        method:'POST',
+        headers:{'apikey':SUPABASE_KEY,'Content-Type':'application/json'},
+        body:JSON.stringify({email,password})
+      });
+      const data=await res.json();
+      if(!res.ok||!data.access_token) throw new Error(data.error_description||'Anmeldung fehlgeschlagen');
+      adminSession=data;
+      sessionStorage.setItem('gf_admin_session',JSON.stringify(data));
+      loginView.style.display='none'; dash.classList.add('visible'); status.textContent='';
+      loadProposals();
+    }catch(err){status.textContent='Anmeldung fehlgeschlagen. Bitte Zugangsdaten prüfen.'}
+  }
+
+  async function loadProposals(){
+    const box=$q('#adminProposalList');
+    box.innerHTML='<div class="admin-status">Terminvorschläge werden geladen …</div>';
+    try{
+      const res=await fetch(SUPABASE_URL+'/rest/v1/calendar_events?select=*&status=eq.pending&order=start_date.asc',{
+        headers:{'apikey':SUPABASE_KEY,'Authorization':'Bearer '+adminSession.access_token}
+      });
+      const rows=await res.json();
+      if(!res.ok) throw new Error(rows.message||'Laden fehlgeschlagen');
+      if(!rows.length){box.innerHTML='<div class="admin-status">Aktuell gibt es keine offenen Terminvorschläge.</div>';return}
+      box.innerHTML=rows.map(r=>`
+        <div class="admin-proposal">
+          <div><strong>${escapeHtml(r.title||'Ohne Titel')}</strong>
+          <small>${escapeHtml(r.start_date||'')} ${r.start_time?'· '+escapeHtml(r.start_time.slice(0,5)):''} · ${escapeHtml(r.category||'')}</small></div>
+          <div class="admin-proposal-actions">
+            <button class="admin-mini publish" data-publish="${r.id}">Veröffentlichen</button>
+            <button class="admin-mini reject" data-reject="${r.id}">Ablehnen</button>
+          </div>
+        </div>`).join('');
+      $$q('[data-publish]',box).forEach(b=>b.onclick=()=>setStatus(b.dataset.publish,'published'));
+      $$q('[data-reject]',box).forEach(b=>b.onclick=()=>setStatus(b.dataset.reject,'rejected'));
+    }catch(err){box.innerHTML='<div class="admin-status">Terminvorschläge konnten nicht geladen werden.</div>'}
+  }
+
+  async function setStatus(id,status){
+    try{
+      const res=await fetch(SUPABASE_URL+'/rest/v1/calendar_events?id=eq.'+encodeURIComponent(id),{
+        method:'PATCH',
+        headers:{'apikey':SUPABASE_KEY,'Authorization':'Bearer '+adminSession.access_token,'Content-Type':'application/json'},
+        body:JSON.stringify({status})
+      });
+      if(!res.ok) throw new Error('Update fehlgeschlagen');
+      await loadProposals();
+      if(typeof loadSupabaseEvents==='function') loadSupabaseEvents();
+    }catch(err){alert('Änderung konnte nicht gespeichert werden. Bitte Admin-RLS prüfen.')}
+  }
+
+  function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+
+  $q('#adminLoginBtn')?.addEventListener('click',login);
+  $q('#adminPassword')?.addEventListener('keydown',e=>{if(e.key==='Enter')login()});
+  $q('#adminLogoutBtn')?.addEventListener('click',()=>{
+    sessionStorage.removeItem('gf_admin_session');adminSession=null;dash.classList.remove('visible');loginView.style.display='block';
+  });
+
+  $$q('[data-admin-tab]').forEach(btn=>btn.addEventListener('click',()=>{
+    $$q('[data-admin-tab]').forEach(x=>x.classList.toggle('active',x===btn));
+    $q('#adminPanelProposals').style.display=btn.dataset.adminTab==='proposals'?'block':'none';
+    $q('#adminPanelCategories').style.display=btn.dataset.adminTab==='categories'?'block':'none';
+  }));
+
+  $$q('.category-color').forEach(input=>input.addEventListener('input',()=>{
+    document.documentElement.style.setProperty(input.dataset.cssVar,input.value);
+    localStorage.setItem('gf_color_'+input.dataset.cssVar,input.value);
+  }));
+  $$q('.category-color').forEach(input=>{
+    const saved=localStorage.getItem('gf_color_'+input.dataset.cssVar);
+    if(saved){input.value=saved;document.documentElement.style.setProperty(input.dataset.cssVar,saved)}
+  });
+
+  try{
+    const saved=JSON.parse(sessionStorage.getItem('gf_admin_session')||'null');
+    if(saved?.access_token){adminSession=saved;loginView.style.display='none';dash.classList.add('visible')}
+  }catch(e){}
+
+  // Color date boxes based on visible category text/classes.
+  function decorateEventRows(){
+    $$q('.event-row,.event-item').forEach(row=>{
+      const txt=row.textContent.toLowerCase();
+      let cat='event';
+      if(txt.includes('ferien')) cat='ferien';
+      else if(txt.includes('gottesdienst')||txt.includes('sunday')) cat='gottesdienst';
+      else if(txt.includes('leiter')||txt.includes('leaders')) cat='leitung';
+      row.dataset.category=cat;
+    });
+  }
+  const obs=new MutationObserver(decorateEventRows);
+  obs.observe(document.body,{childList:true,subtree:true});
+  decorateEventRows();
+})();
+</script>
+
+
+<script id="gf-v15-admin-fix">
+(function(){
+  const q=(s,r=document)=>r.querySelector(s);
+  const qa=(s,r=document)=>Array.from(r.querySelectorAll(s));
+
+  const shell=q('#adminShell');
+  const openBtn=q('#openAdmin');
+  const closeBtn=q('#closeAdmin');
+  const cancelBtn=q('#adminCancelBtn');
+  const loginBtn=q('#adminLoginBtn');
+  const logoutBtn=q('#adminLogoutBtn');
+  const loginView=q('#adminLoginView');
+  const dashboard=q('#adminDashboard');
+  const status=q('#adminStatus');
+
+  function openAdminModal(){
+    if(!shell) return;
+    shell.classList.add('open');
+    shell.setAttribute('aria-hidden','false');
+    const email=q('#adminEmail');
+    if(email) setTimeout(()=>email.focus(),40);
+  }
+  function closeAdminModal(){
+    if(!shell) return;
+    shell.classList.remove('open');
+    shell.setAttribute('aria-hidden','true');
+  }
+
+  if(openBtn){
+    const fresh=openBtn.cloneNode(true);
+    openBtn.replaceWith(fresh);
+    fresh.addEventListener('click',openAdminModal);
+  }
+  closeBtn?.addEventListener('click',closeAdminModal);
+  cancelBtn?.addEventListener('click',closeAdminModal);
+  shell?.addEventListener('click',e=>{ if(e.target===shell) closeAdminModal(); });
+
+  async function doLogin(){
+    const email=q('#adminEmail')?.value.trim()||'';
+    const password=q('#adminPassword')?.value||'';
+    if(!email||!password){
+      if(status) status.textContent='Bitte E-Mail-Adresse und Passwort eingeben.';
+      return;
+    }
+    if(status) status.textContent='Anmeldung läuft …';
+    try{
+      const res=await fetch(SUPABASE_URL+'/auth/v1/token?grant_type=password',{
+        method:'POST',
+        headers:{
+          'apikey':SUPABASE_KEY,
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({email,password})
+      });
+      const data=await res.json().catch(()=>({}));
+      if(!res.ok || !data.access_token){
+        throw new Error(data.error_description||data.msg||'Anmeldung fehlgeschlagen');
+      }
+
+      // Optional echte Adminprüfung, falls calendar_admins existiert:
+      let isAdmin=true;
+      try{
+        const check=await fetch(
+          SUPABASE_URL+'/rest/v1/calendar_admins?user_id=eq.'+encodeURIComponent(data.user.id)+'&select=user_id',
+          {headers:{'apikey':SUPABASE_KEY,'Authorization':'Bearer '+data.access_token}}
+        );
+        if(check.ok){
+          const rows=await check.json();
+          isAdmin=rows.length>0;
+        }
+      }catch(e){}
+
+      if(!isAdmin) throw new Error('Dieses Konto ist nicht als Kalender-Admin freigeschaltet.');
+
+      sessionStorage.setItem('gf_admin_session',JSON.stringify(data));
+      if(loginView) loginView.style.display='none';
+      dashboard?.classList.add('visible');
+      if(status) status.textContent='';
+      if(typeof window.gfLoadAdminProposals==='function') window.gfLoadAdminProposals();
+    }catch(err){
+      if(status) status.textContent=err.message||'Anmeldung fehlgeschlagen.';
+    }
+  }
+
+  if(loginBtn){
+    const freshLogin=loginBtn.cloneNode(true);
+    loginBtn.replaceWith(freshLogin);
+    freshLogin.addEventListener('click',doLogin);
+  }
+  q('#adminPassword')?.addEventListener('keydown',e=>{if(e.key==='Enter')doLogin()});
+
+  logoutBtn?.addEventListener('click',()=>{
+    sessionStorage.removeItem('gf_admin_session');
+    dashboard?.classList.remove('visible');
+    if(loginView) loginView.style.display='block';
+    if(status) status.textContent='Abgemeldet.';
+  });
+
+  // Restore session visually
+  try{
+    const saved=JSON.parse(sessionStorage.getItem('gf_admin_session')||'null');
+    if(saved?.access_token){
+      if(loginView) loginView.style.display='none';
+      dashboard?.classList.add('visible');
+    }
+  }catch(e){}
+
+  // Re-classify right-side event rows by exact event data if possible, fallback by text.
+  function classifyRows(){
+    qa('.eventrow').forEach(row=>{
+      const text=row.textContent.toLowerCase();
+      let category='event';
+      if(text.includes('ferien')) category='ferien';
+      else if(text.includes('gottesdienst') || text.includes('sunday night') || text.includes('konfirmationsfeier')) category='gottesdienst';
+      else if(text.includes('leiter') || text.includes('leaders one day') || text.includes('pastor- und leiter')) category='leitung';
+      row.dataset.category=category;
+    });
+  }
+  const observer=new MutationObserver(classifyRows);
+  observer.observe(document.body,{childList:true,subtree:true});
+  classifyRows();
+})();
+</script>
+
+
+<script id="gf-v16-category-admin-js">
+(function(){
+  const q=(s,r=document)=>r.querySelector(s);
+  const qa=(s,r=document)=>Array.from(r.querySelectorAll(s));
+
+  const DEFAULT_NAMES={
+    event:'Events',
+    gottesdienst:'Gottesdienste',
+    leitung:'Leitertermine',
+    ferien:'Ferien'
+  };
+
+  function currentNames(){
+    const out={...DEFAULT_NAMES};
+    qa('[data-cat-name]').forEach(input=>{
+      if(input.value.trim()) out[input.dataset.catName]=input.value.trim();
+    });
+    return out;
+  }
+
+  function applyNames(names){
+    // Filter buttons
+    qa('[data-cat-toggle]').forEach(btn=>{
+      const key=btn.dataset.catToggle;
+      if(!names[key]) return;
+      const swatch=btn.querySelector('.category-swatch');
+      btn.innerHTML='';
+      if(swatch) btn.appendChild(swatch);
+      else {
+        const s=document.createElement('span');
+        s.className='category-swatch';
+        btn.appendChild(s);
+      }
+      btn.append(document.createTextNode(names[key]));
+    });
+
+    // Right event category badges
+    const styleId='gf-dynamic-category-labels';
+    let st=document.getElementById(styleId);
+    if(!st){st=document.createElement('style');st.id=styleId;document.head.appendChild(st)}
+    st.textContent=`
+      .eventrow[data-category="event"]::after{content:"${names.event.replace(/"/g,'\\"')}"!important}
+      .eventrow[data-category="gottesdienst"]::after{content:"${names.gottesdienst.replace(/"/g,'\\"')}"!important}
+      .eventrow[data-category="leitung"]::after{content:"${names.leitung.replace(/"/g,'\\"')}"!important}
+      .eventrow[data-category="ferien"]::after{content:"${names.ferien.replace(/"/g,'\\"')}"!important}
+    `;
+
+    // Proposal form options
+    const select=q('#evCategory');
+    if(select){
+      Array.from(select.options).forEach(opt=>{
+        if(names[opt.value]) opt.textContent=names[opt.value];
+      });
+    }
+  }
+
+  try{
+    const saved=JSON.parse(localStorage.getItem('gf_category_names')||'null');
+    if(saved){
+      qa('[data-cat-name]').forEach(input=>{
+        if(saved[input.dataset.catName]) input.value=saved[input.dataset.catName];
+      });
+      applyNames(saved);
+    }
+  }catch(e){}
+
+  q('#saveCategoryNamesBtn')?.addEventListener('click', async ()=>{
+    const names=currentNames();
+    localStorage.setItem('gf_category_names',JSON.stringify(names));
+    applyNames(names);
+
+    const status=q('#categoryAdminStatus');
+    if(status) status.textContent='Bezeichnungen lokal gespeichert ✓';
+
+    // If admin session exists, also persist to Supabase calendar_categories
+    let session=null;
+    try{session=JSON.parse(sessionStorage.getItem('gf_admin_session')||'null')}catch(e){}
+    if(!session?.access_token) return;
+
+    try{
+      for(const [slug,name] of Object.entries(names)){
+        const res=await fetch(
+          SUPABASE_URL+'/rest/v1/calendar_categories?slug=eq.'+encodeURIComponent(slug),
+          {
+            method:'PATCH',
+            headers:{
+              'apikey':SUPABASE_KEY,
+              'Authorization':'Bearer '+session.access_token,
+              'Content-Type':'application/json'
+            },
+            body:JSON.stringify({name})
+          }
+        );
+        if(!res.ok) throw new Error('Speichern fehlgeschlagen');
+      }
+      if(status) status.textContent='Kategorien in Supabase gespeichert ✓';
+    }catch(err){
+      if(status) status.textContent='Lokal gespeichert; Supabase-Änderung konnte nicht gespeichert werden.';
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
