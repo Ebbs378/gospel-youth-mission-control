@@ -3,81 +3,129 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#09090b">
-<title>Gospel Youth Mission Control</title>
+<meta name="theme-color" content="#08080a">
+<title>Gospel Youth · Social Media Contentplan</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header class="topbar">
-  <div class="topbar-inner">
-    <img src="logo.webp" class="logo" alt="Gospel Youth">
+  <div class="top-inner">
+    <img class="logo" src="logo.webp" alt="Gospel Youth">
+    <nav class="desktop-nav">
+      <button class="nav-link active" data-view="plan" onclick="showView('plan',this)">Plan</button>
+      <button class="nav-link" data-view="content" onclick="showView('content',this)">Content</button>
+      <button class="nav-link" data-view="team" onclick="showView('team',this)">Team</button>
+      <button class="nav-link" data-view="mine" onclick="showView('mine',this)">Meine Einsätze</button>
+    </nav>
     <div class="top-actions">
-      <a id="igTop" class="social-icon social-img" target="_blank" title="Instagram" aria-label="Instagram"><img src="instagram.jpg" alt=""></a>
-      <a id="ttTop" class="social-icon social-img" target="_blank" title="TikTok" aria-label="TikTok"><img src="tiktok.webp" alt=""></a>
-      <button class="text-btn" onclick="openAdmin()">Admin</button>
-      <button class="round-btn" onclick="toggleTheme()" aria-label="Darstellung wechseln">◐</button>
+      <a id="igTop" class="social-clean" target="_blank" aria-label="Instagram"><img src="instagram.jpg" alt=""></a>
+      <a id="ttTop" class="social-clean" target="_blank" aria-label="TikTok"><img src="tiktok.webp" alt=""></a>
+      <button class="admin-link" onclick="openAdmin()">Admin</button>
+      <button class="theme-btn" onclick="toggleTheme()" aria-label="Darstellung wechseln">◐</button>
     </div>
   </div>
 </header>
 
 <main>
-  <section class="event-hero">
-    <div class="eyebrow">Gospel Youth Mission Control</div>
+  <section class="hero">
+    <div class="eyebrow">Gospel Youth · Social Media Contentplan</div>
     <h1 id="eventTitle">Sommerfestival 2026</h1>
-    <div id="eventSubtitle" class="event-subtitle">Heaven Now</div>
-    <p id="eventIntro">Daten werden geladen …</p>
+    <div id="eventSubtitle" class="subtitle">Heaven Now</div>
+    <p id="eventIntro"></p>
   </section>
 
-  <div id="connectionStatus" class="status-banner">Mit Supabase verbinden …</div>
+  <div id="errorBanner" class="error-banner hidden"></div>
 
-  <section class="day-select-section">
-    <div class="section-label">Tag auswählen</div>
-    <div id="dayStrip" class="day-strip"></div>
+  <section id="view-plan" class="view active">
+    <div class="block">
+      <div class="block-label">Tag auswählen</div>
+      <div id="dayStrip" class="day-strip"></div>
+    </div>
+
+    <div class="category-strip">
+      <button class="category active" onclick="setCategory('all',this)">Gesamt</button>
+      <button class="category" onclick="setCategory('story',this)">Stories</button>
+      <button class="category" onclick="setCategory('photo',this)">Fotograf</button>
+      <button class="category" onclick="setCategory('reel',this)">Reels</button>
+      <button class="category" onclick="setCategory('interview',this)">Interviews</button>
+    </div>
+
+    <section id="goalsCard" class="goals-panel"></section>
+    <section id="daySummary" class="day-summary"></section>
+    <section id="assignmentOverview" class="assignment-section"></section>
+    <section id="dayparts"></section>
   </section>
 
-  <section class="category-wrap">
-    <button class="category active" data-category="all" onclick="setCategory('all',this)">Gesamt</button>
-    <button class="category" data-category="story" onclick="setCategory('story',this)">Stories</button>
-    <button class="category" data-category="photo" onclick="setCategory('photo',this)">Fotograf</button>
-    <button class="category" data-category="reel" onclick="setCategory('reel',this)">Reels</button>
-    <button class="category" data-category="interview" onclick="setCategory('interview',this)">Interviews</button>
+  <section id="view-content" class="view">
+    <div class="view-head">
+      <div><div class="eyebrow">Produktion</div><h2>Content</h2><p>Alle Reels, Stories, Fotos und Interviews für den ausgewählten Tag.</p></div>
+    </div>
+    <div id="contentDayStrip" class="day-strip"></div>
+    <div id="contentFilters" class="category-strip">
+      <button class="category active" onclick="setContentFilter('all',this)">Alle</button>
+      <button class="category" onclick="setContentFilter('story',this)">Stories</button>
+      <button class="category" onclick="setContentFilter('photo',this)">Fotos</button>
+      <button class="category" onclick="setContentFilter('reel',this)">Reels</button>
+      <button class="category" onclick="setContentFilter('interview',this)">Interviews</button>
+    </div>
+    <div id="contentGrid" class="content-grid"></div>
   </section>
 
-  <section id="goalsCard" class="goals-card glass"></section>
-  <section id="summaryCard" class="summary-card glass"></section>
-  <section id="assignmentOverview" class="assignment-overview"></section>
-  <section id="dayparts"></section>
+  <section id="view-team" class="view">
+    <div class="view-head"><div><div class="eyebrow">Crew</div><h2>Team</h2><p>Kontakte und Rollen. Auf dem Handy direkt anrufen oder WhatsApp öffnen.</p></div></div>
+    <div id="teamFilters" class="category-strip">
+      <button class="category active" onclick="setTeamFilter('all',this)">Alle</button>
+      <button class="category" onclick="setTeamFilter('photo',this)">Fotografen</button>
+      <button class="category" onclick="setTeamFilter('coord',this)">Story-Koord.</button>
+      <button class="category" onclick="setTeamFilter('story',this)">Story-Maker</button>
+      <button class="category" onclick="setTeamFilter('reel',this)">Reels</button>
+      <button class="category" onclick="setTeamFilter('interview',this)">Interviews</button>
+    </div>
+    <div id="teamGrid" class="team-grid"></div>
+  </section>
 
-  <section id="teamDirectory" class="public-section"></section>
-  <section id="mySchedule" class="public-section"></section>
+  <section id="view-mine" class="view">
+    <div class="view-head"><div><div class="eyebrow">Persönlicher Plan</div><h2>Meine Einsätze</h2><p>Kein Login nötig. Namen auswählen und alle Einsätze sehen.</p></div></div>
+    <div class="mine-selector">
+      <select id="minePerson" onchange="renderMine(this.value)"><option value="">Person auswählen …</option></select>
+      <button id="mineCalendar" class="primary-btn hidden" onclick="downloadPersonICS()">Alle in Kalender</button>
+    </div>
+    <div id="mineNext"></div>
+    <div id="mineTimeline" class="mine-timeline"></div>
+  </section>
 
   <footer>Social Media Contentplan · Created by Ebenezer Agonafer</footer>
 </main>
 
+<nav class="mobile-nav">
+  <button class="active" data-view="plan" onclick="showView('plan',this)">Plan</button>
+  <button data-view="content" onclick="showView('content',this)">Content</button>
+  <button data-view="team" onclick="showView('team',this)">Team</button>
+  <button data-view="mine" onclick="showView('mine',this)">Meine Einsätze</button>
+</nav>
+
 <div id="adminOverlay" class="overlay hidden">
   <div class="admin-shell">
-    <div class="admin-header">
-      <div><div class="eyebrow">Adminbereich</div><h2>Verwaltung</h2></div>
-      <button class="round-btn" onclick="closeAdmin()">×</button>
-    </div>
+    <header class="admin-head">
+      <div><div class="eyebrow">Admin</div><h2>Mission Control</h2></div>
+      <button class="close-btn" onclick="closeAdmin()">×</button>
+    </header>
 
-    <div id="adminLogin" class="admin-login glass">
-      <h3>Anmelden</h3>
-      <p>Nutze deinen Supabase-Admin-Account.</p>
+    <section id="adminLogin" class="login-card">
+      <h3>Anmelden</h3><p>Bearbeiten ist nur mit deinem Supabase-Admin-Account möglich.</p>
       <label>E-Mail<input id="adminEmail" type="email" autocomplete="username"></label>
       <label>Passwort<input id="adminPassword" type="password" autocomplete="current-password"></label>
-      <button class="primary-btn" onclick="loginAdmin()">Anmelden</button>
-      <small id="loginMessage"></small>
-    </div>
+      <button class="primary-btn wide" onclick="loginAdmin()">Anmelden</button>
+      <div id="loginMessage" class="form-message"></div>
+    </section>
 
-    <div id="adminApp" class="hidden">
-      <div class="admin-userbar">
-        <span id="adminUser"></span>
-        <button class="secondary-btn compact" onclick="logoutAdmin()">Abmelden</button>
-      </div>
+    <section id="adminApp" class="hidden">
+      <div class="admin-userbar"><span id="adminUser"></span><button class="ghost-btn" onclick="logoutAdmin()">Abmelden</button></div>
       <div class="admin-tabs">
         <button class="admin-tab active" onclick="showAdminTab('overview',this)">Übersicht</button>
         <button class="admin-tab" onclick="showAdminTab('program',this)">Programm</button>
+        <button class="admin-tab" onclick="showAdminTab('subitems',this)">Unterpunkte</button>
+        <button class="admin-tab" onclick="showAdminTab('stories',this)">Story-Punkte</button>
         <button class="admin-tab" onclick="showAdminTab('content',this)">Content</button>
         <button class="admin-tab" onclick="showAdminTab('tasks',this)">Aufgaben</button>
         <button class="admin-tab" onclick="showAdminTab('team',this)">Team</button>
@@ -86,33 +134,29 @@
       </div>
       <div id="admin-overview" class="admin-panel active"></div>
       <div id="admin-program" class="admin-panel"></div>
+      <div id="admin-subitems" class="admin-panel"></div>
+      <div id="admin-stories" class="admin-panel"></div>
       <div id="admin-content" class="admin-panel"></div>
       <div id="admin-tasks" class="admin-panel"></div>
       <div id="admin-team" class="admin-panel"></div>
       <div id="admin-goals" class="admin-panel"></div>
       <div id="admin-settings" class="admin-panel"></div>
-    </div>
+    </section>
   </div>
 </div>
 
 <div id="formModal" class="overlay hidden">
   <div class="form-sheet">
-    <div class="form-head">
-      <h3 id="formTitle">Bearbeiten</h3>
-      <button class="round-btn" onclick="closeForm()">×</button>
-    </div>
+    <div class="form-head"><h3 id="formTitle">Bearbeiten</h3><button class="close-btn" onclick="closeForm()">×</button></div>
     <div id="formBody"></div>
     <div id="formError" class="form-error hidden"></div>
-    <div class="form-actions">
-      <button class="secondary-btn" onclick="closeForm()">Abbrechen</button>
-      <button id="saveButton" class="primary-btn" onclick="saveForm()">Speichern</button>
-    </div>
+    <div class="form-actions"><button class="ghost-btn" onclick="closeForm()">Abbrechen</button><button id="saveButton" class="primary-btn" onclick="saveForm()">Speichern</button></div>
   </div>
 </div>
 
 <div id="imageViewer" class="image-viewer hidden" onclick="closeImageViewer()">
   <div class="image-viewer-inner" onclick="event.stopPropagation()">
-    <button class="round-btn image-close" onclick="closeImageViewer()">×</button>
+    <button class="close-btn floating" onclick="closeImageViewer()">×</button>
     <img id="viewerImage" alt="">
     <p id="viewerCaption"></p>
   </div>

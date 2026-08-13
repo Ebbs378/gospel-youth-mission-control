@@ -1,32 +1,38 @@
-GOSPEL YOUTH MISSION CONTROL V8
+GOSPEL YOUTH MISSION CONTROL V9
 
-VOR DEM UPLOAD:
+WICHTIG – ZUERST SUPABASE:
 1. Supabase > SQL Editor > New Query.
-2. V8-MIGRATION.sql komplett einfügen.
+2. V9-MIGRATION.sql komplett einfügen.
 3. Run.
-4. Es sollte "Success. No rows returned" erscheinen.
+4. Bei Success die Website-Dateien auf GitHub ersetzen.
+5. Danach hart neu laden (Cmd+Shift+R / Ctrl+F5).
 
-DANN AUF GITHUB:
-index.html, styles.css, app.js, config.js, logo.webp, instagram.jpg und tiktok.webp hochladen/ersetzen.
-Danach Commit changes und GitHub Pages neu laden.
+NEU IN V9:
+- kompletter Design-Umbau: weniger Boxen, mehr Abstand, strukturierter
+- kleine Instagram-/TikTok-Icons ohne Hintergrund
+- technischer "Live verbunden"-Hinweis entfernt; nur echte Fehler werden angezeigt
+- eigene Ansichten: Plan / Content / Team / Meine Einsätze
+- Meine Einsätze ist eine separate Ansicht, kein Anhängsel unter dem Plan
+- Programm-Unterpunkte: Worship, Predigt, Games, Gebet, Kleingruppe usw.
+- Unterpunkte sind sortierbar und können optional eigene Uhrzeiten haben
+- nummerierte Story-Punkte pro Programmpunkt: 1. Story, 2. Story, 3. Story ...
+- Story-Punkte haben Verantwortliche + Beschreibung
+- separate Content-Seite
+- separate Team-Seite mit Anrufen, WhatsApp und E-Mail
+- persönlicher Kalenderexport ohne Team-Login
+- Tagesziele
+- Mehrfach-Bildupload + Beschreibung pro Bild
+- TikTok/Instagram Embed-Versuch + Original-Link
+- einfache Doppelbelegungswarnung im Admin-Dashboard
 
-NEU IN V8:
-- mehr Abstand und ruhigere Mobile-First-Ansicht
-- Morgen / Mittag / Abend ohne erfundene Zeitbereiche
-- Tagesziele für Stories, Reels, Fotos und Interviews
-- Gesamtbesetzung pro Tag
-- komplette öffentliche Mitarbeiterübersicht mit Rollenfilter
-- Telefonnummer im Admin; direkt Anrufen und WhatsApp
-- "Meine Einsätze" ohne Login
-- kompletter persönlicher Kalenderexport als ICS
-- mehrere Inspirationsbilder gleichzeitig hochladen
-- eine Bildbeschreibung pro Bild (eine Zeile je Bild)
-- große Bildansicht beim Antippen
-- TikTok-Beispielvideos direkt eingebettet, wenn der Link ein öffentliches TikTok-Video ist
-- Instagram-Reels/Posts werden als Embed versucht; falls Instagram es blockiert bleibt "Original öffnen"
-- echte Instagram- und TikTok-Icons
-- Footer: Social Media Contentplan · Created by Ebenezer Agonafer
+DATEIEN FÜR GITHUB:
+index.html
+styles.css
+app.js
+config.js
+logo.webp
+instagram.jpg
+tiktok.webp
 
-ADMIN:
-Admin-Login läuft weiter über Supabase Authentication.
-Öffentliche Besucher können lesen, aber nicht bearbeiten.
+SQL:
+V9-MIGRATION.sql wird nur im Supabase SQL Editor ausgeführt. Sie kann im Repository bleiben, ist aber für GitHub Pages nicht nötig.
