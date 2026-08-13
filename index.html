@@ -1,169 +1,76 @@
 <!doctype html>
 <html lang="de" data-theme="dark">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#08080a">
-<title>Gospel Youth · Social Media Contentplan</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070708"><title>Gospel Youth · Mission Control</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header class="topbar">
-  <div class="top-inner">
-    <img class="logo" src="logo.webp" alt="Gospel Youth">
-    <nav class="desktop-nav">
-      <button class="nav-link active" data-view="plan" onclick="showView('plan',this)">Plan</button>
-      <button class="nav-link" data-view="content" onclick="showView('content',this)">Content</button>
-      <button class="nav-link" data-view="team" onclick="showView('team',this)">Team</button>
-      <button class="nav-link" data-view="mine" onclick="showView('mine',this)">Meine Einsätze</button>
-    </nav>
-    <div class="top-actions">
-      <a id="igTop" class="social-clean" target="_blank" aria-label="Instagram"><img src="instagram.jpg" alt=""></a>
-      <a id="ttTop" class="social-clean" target="_blank" aria-label="TikTok"><img src="tiktok.webp" alt=""></a>
-      <button class="admin-link" onclick="openAdmin()">Admin</button>
-      <button class="theme-btn" onclick="toggleTheme()" aria-label="Darstellung wechseln">◐</button>
-    </div>
-  </div>
-</header>
+<header class="topbar"><div class="top-inner">
+  <img src="logo.webp" class="logo" alt="Gospel Youth">
+  <nav class="desktop-nav">
+    <button data-view="plan" class="nav active" onclick="showView('plan')">Plan</button>
+    <button data-view="mine" class="nav" onclick="showView('mine')">Meine Einsätze</button>
+    <button data-view="team" class="nav" onclick="showView('team')">Team</button>
+    <button data-view="templates" class="nav" onclick="showView('templates')">Vorlagen</button>
+  </nav>
+  <div class="top-actions"><a id="ig" class="social" target="_blank"><img src="instagram.jpg"></a><a id="tt" class="social" target="_blank"><img src="tiktok.webp"></a><button class="adminText" onclick="openAdmin()">Admin</button><button class="theme" onclick="toggleTheme()">◐</button></div>
+</div></header>
 
 <main>
-  <section class="hero">
-    <div class="eyebrow">Gospel Youth · Social Media Contentplan</div>
-    <h1 id="eventTitle">Sommerfestival 2026</h1>
-    <div id="eventSubtitle" class="subtitle">Heaven Now</div>
-    <p id="eventIntro"></p>
-  </section>
+<section class="hero"><div class="kicker">Gospel Youth · Social Media Mission Control</div><h1 id="title">Sommerfestival 2026</h1><p id="subtitle" class="lead">Heaven Now</p></section>
+<div id="error" class="error hidden"></div>
 
-  <div id="errorBanner" class="error-banner hidden"></div>
+<section id="view-plan" class="view active">
+  <div class="section-label">Tag</div><div id="days" class="days"></div>
+  <section id="dayHero" class="dayHero"></section>
+  <section id="progress" class="progressWrap"></section>
+  <div id="dayparts"></div>
+</section>
 
-  <section id="view-plan" class="view active">
-    <div class="block">
-      <div class="block-label">Tag auswählen</div>
-      <div id="dayStrip" class="day-strip"></div>
-    </div>
+<section id="view-mine" class="view">
+ <div class="pageHead"><div class="kicker">Persönlicher Plan</div><h2>Meine Einsätze</h2><p>Person und Tag auswählen. Nur das, was für dich relevant ist.</p></div>
+ <div class="selector"><select id="minePerson" onchange="setMinePerson(this.value)"></select></div>
+ <div id="mineDays" class="days"></div><div id="mineNext"></div><div id="mineList"></div>
+ <button id="calendarAll" class="primary hidden" onclick="exportMine()">Alle Einsätze in Kalender</button>
+</section>
 
-    <div class="category-strip">
-      <button class="category active" onclick="setCategory('all',this)">Gesamt</button>
-      <button class="category" onclick="setCategory('story',this)">Stories</button>
-      <button class="category" onclick="setCategory('photo',this)">Fotograf</button>
-      <button class="category" onclick="setCategory('reel',this)">Reels</button>
-      <button class="category" onclick="setCategory('interview',this)">Interviews</button>
-    </div>
+<section id="view-team" class="view">
+ <div class="pageHead"><div class="kicker">Crew</div><h2>Team</h2><p>Alle Mitarbeiter und ihre Rollen.</p></div>
+ <div id="teamFilters" class="pills"></div><div id="teamGrid" class="teamGrid"></div>
+</section>
 
-    <section id="goalsCard" class="goals-panel"></section>
-    <section id="daySummary" class="day-summary"></section>
-    <section id="assignmentOverview" class="assignment-section"></section>
-    <section id="dayparts"></section>
-  </section>
+<section id="view-templates" class="view">
+ <div class="pageHead"><div class="kicker">Assets</div><h2>Vorlagen</h2><p>Story-, Post- und Reel-Vorlagen für das Team.</p></div>
+ <div id="templateFilters" class="pills"></div><div id="templateGrid" class="templateGrid"></div>
+</section>
 
-  <section id="view-content" class="view">
-    <div class="view-head">
-      <div><div class="eyebrow">Produktion</div><h2>Content</h2><p>Alle Reels, Stories, Fotos und Interviews für den ausgewählten Tag.</p></div>
-    </div>
-    <div id="contentDayStrip" class="day-strip"></div>
-    <div id="contentFilters" class="category-strip">
-      <button class="category active" onclick="setContentFilter('all',this)">Alle</button>
-      <button class="category" onclick="setContentFilter('story',this)">Stories</button>
-      <button class="category" onclick="setContentFilter('photo',this)">Fotos</button>
-      <button class="category" onclick="setContentFilter('reel',this)">Reels</button>
-      <button class="category" onclick="setContentFilter('interview',this)">Interviews</button>
-    </div>
-    <div id="contentGrid" class="content-grid"></div>
-  </section>
-
-  <section id="view-team" class="view">
-    <div class="view-head"><div><div class="eyebrow">Crew</div><h2>Team</h2><p>Kontakte und Rollen. Auf dem Handy direkt anrufen oder WhatsApp öffnen.</p></div></div>
-    <div id="teamFilters" class="category-strip">
-      <button class="category active" onclick="setTeamFilter('all',this)">Alle</button>
-      <button class="category" onclick="setTeamFilter('photo',this)">Fotografen</button>
-      <button class="category" onclick="setTeamFilter('coord',this)">Story-Koord.</button>
-      <button class="category" onclick="setTeamFilter('story',this)">Story-Maker</button>
-      <button class="category" onclick="setTeamFilter('reel',this)">Reels</button>
-      <button class="category" onclick="setTeamFilter('interview',this)">Interviews</button>
-    </div>
-    <div id="teamGrid" class="team-grid"></div>
-  </section>
-
-  <section id="view-mine" class="view">
-    <div class="view-head"><div><div class="eyebrow">Persönlicher Plan</div><h2>Meine Einsätze</h2><p>Kein Login nötig. Namen auswählen und alle Einsätze sehen.</p></div></div>
-    <div class="mine-selector">
-      <select id="minePerson" onchange="renderMine(this.value)"><option value="">Person auswählen …</option></select>
-      <button id="mineCalendar" class="primary-btn hidden" onclick="downloadPersonICS()">Alle in Kalender</button>
-    </div>
-    <div id="mineNext"></div>
-    <div id="mineTimeline" class="mine-timeline"></div>
-  </section>
-
-  <footer>Social Media Contentplan · Created by Ebenezer Agonafer</footer>
+<footer>Social Media Contentplan · Created by Ebenezer Agonafer</footer>
 </main>
 
-<nav class="mobile-nav">
-  <button class="active" data-view="plan" onclick="showView('plan',this)">Plan</button>
-  <button data-view="content" onclick="showView('content',this)">Content</button>
-  <button data-view="team" onclick="showView('team',this)">Team</button>
-  <button data-view="mine" onclick="showView('mine',this)">Meine Einsätze</button>
+<nav class="mobileNav">
+ <button data-view="plan" class="active" onclick="showView('plan')">Plan</button>
+ <button data-view="mine" onclick="showView('mine')">Einsätze</button>
+ <button data-view="team" onclick="showView('team')">Team</button>
+ <button data-view="templates" onclick="showView('templates')">Vorlagen</button>
 </nav>
 
-<div id="adminOverlay" class="overlay hidden">
-  <div class="admin-shell">
-    <header class="admin-head">
-      <div><div class="eyebrow">Admin</div><h2>Mission Control</h2></div>
-      <button class="close-btn" onclick="closeAdmin()">×</button>
-    </header>
+<div id="admin" class="overlay hidden"><div class="adminShell">
+ <header class="adminHeader"><div><div class="kicker">Admin</div><h2>Mission Control</h2></div><button class="x" onclick="closeAdmin()">×</button></header>
+ <div id="login" class="login"><h3>Anmelden</h3><p>Nur Admins können bearbeiten.</p><input id="email" type="email" placeholder="E-Mail"><input id="password" type="password" placeholder="Passwort"><button class="primary" onclick="login()">Anmelden</button><small id="loginMsg"></small></div>
+ <div id="adminApp" class="hidden">
+  <div class="adminBar"><span id="adminEmail"></span><button class="ghost" onclick="logout()">Abmelden</button></div>
+  <div class="section-label">Tag bearbeiten</div><div id="adminDays" class="days"></div>
+  <div class="adminPreviewHead"><div><div class="kicker">Live-Vorschau</div><h3 id="adminDayTitle"></h3></div><button class="primary" onclick="editDay()">Tag & Thema bearbeiten</button></div>
+  <div id="adminProgress"></div><div id="adminDayparts"></div>
+  <section class="adminSection"><div class="adminPreviewHead"><div><h3>Vorlagen</h3><p>PNG/JPG für das Team.</p></div><button class="primary" onclick="openForm('template')">+ Vorlage</button></div><div id="adminTemplates" class="templateGrid"></div></section>
+  <section class="adminSection"><div class="adminPreviewHead"><div><h3>Team</h3><p>Mitarbeiter und Rollen.</p></div><button class="primary" onclick="openForm('member')">+ Person</button></div><div id="adminTeam" class="teamGrid"></div></section>
+ </div>
+</div></div>
 
-    <section id="adminLogin" class="login-card">
-      <h3>Anmelden</h3><p>Bearbeiten ist nur mit deinem Supabase-Admin-Account möglich.</p>
-      <label>E-Mail<input id="adminEmail" type="email" autocomplete="username"></label>
-      <label>Passwort<input id="adminPassword" type="password" autocomplete="current-password"></label>
-      <button class="primary-btn wide" onclick="loginAdmin()">Anmelden</button>
-      <div id="loginMessage" class="form-message"></div>
-    </section>
+<div id="formModal" class="overlay hidden"><div class="sheet"><header class="sheetHead"><h3 id="formTitle"></h3><button class="x" onclick="closeForm()">×</button></header><div id="formBody"></div><div id="formError" class="error hidden"></div><div class="formActions"><button class="ghost" onclick="closeForm()">Abbrechen</button><button id="save" class="primary" onclick="saveForm()">Speichern</button></div></div></div>
 
-    <section id="adminApp" class="hidden">
-      <div class="admin-userbar"><span id="adminUser"></span><button class="ghost-btn" onclick="logoutAdmin()">Abmelden</button></div>
-      <div class="admin-tabs">
-        <button class="admin-tab active" onclick="showAdminTab('overview',this)">Übersicht</button>
-        <button class="admin-tab" onclick="showAdminTab('program',this)">Programm</button>
-        <button class="admin-tab" onclick="showAdminTab('subitems',this)">Unterpunkte</button>
-        <button class="admin-tab" onclick="showAdminTab('stories',this)">Story-Punkte</button>
-        <button class="admin-tab" onclick="showAdminTab('content',this)">Content</button>
-        <button class="admin-tab" onclick="showAdminTab('tasks',this)">Aufgaben</button>
-        <button class="admin-tab" onclick="showAdminTab('team',this)">Team</button>
-        <button class="admin-tab" onclick="showAdminTab('goals',this)">Tagesziele</button>
-        <button class="admin-tab" onclick="showAdminTab('settings',this)">Einstellungen</button>
-      </div>
-      <div id="admin-overview" class="admin-panel active"></div>
-      <div id="admin-program" class="admin-panel"></div>
-      <div id="admin-subitems" class="admin-panel"></div>
-      <div id="admin-stories" class="admin-panel"></div>
-      <div id="admin-content" class="admin-panel"></div>
-      <div id="admin-tasks" class="admin-panel"></div>
-      <div id="admin-team" class="admin-panel"></div>
-      <div id="admin-goals" class="admin-panel"></div>
-      <div id="admin-settings" class="admin-panel"></div>
-    </section>
-  </div>
-</div>
+<div id="gallery" class="gallery hidden" onclick="closeGallery()"><button class="x galleryX" onclick="closeGallery()">×</button><button class="galleryPrev" onclick="event.stopPropagation();galleryStep(-1)">‹</button><div class="galleryInner" onclick="event.stopPropagation()"><img id="galleryImg"><p id="galleryCaption"></p></div><button class="galleryNext" onclick="event.stopPropagation();galleryStep(1)">›</button></div>
 
-<div id="formModal" class="overlay hidden">
-  <div class="form-sheet">
-    <div class="form-head"><h3 id="formTitle">Bearbeiten</h3><button class="close-btn" onclick="closeForm()">×</button></div>
-    <div id="formBody"></div>
-    <div id="formError" class="form-error hidden"></div>
-    <div class="form-actions"><button class="ghost-btn" onclick="closeForm()">Abbrechen</button><button id="saveButton" class="primary-btn" onclick="saveForm()">Speichern</button></div>
-  </div>
-</div>
-
-<div id="imageViewer" class="image-viewer hidden" onclick="closeImageViewer()">
-  <div class="image-viewer-inner" onclick="event.stopPropagation()">
-    <button class="close-btn floating" onclick="closeImageViewer()">×</button>
-    <img id="viewerImage" alt="">
-    <p id="viewerCaption"></p>
-  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="config.js"></script>
-<script src="app.js"></script>
-</body>
-</html>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script><script src="app.js"></script>
+</body></html>
