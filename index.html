@@ -3,45 +3,46 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#070708">
-<title>Gospel Youth · Sommerfestival Social Media Team</title>
+<meta name="theme-color" content="#08080a">
+<title>Gospel Youth · Sommerfestival 2026</title>
 <link rel="stylesheet" href="styles.css">
-<link rel="manifest" href="manifest.webmanifest">
 </head>
 <body>
 
 <section id="teamGate" class="team-gate">
   <div class="gate-card">
     <img src="logo.webp" class="gate-logo" alt="Gospel Youth">
-    <div class="gate-eyebrow">Sommerfestival 2026</div>
+    <div class="eyebrow">Sommerfestival 2026</div>
     <h1>Social Media Team</h1>
-    <p>Willkommen im Team-Bereich. Hier findest du deinen Dienst, Tagesplan, Vorlagen und fertigen Content.</p>
-    <label class="code-label">Team-Code</label>
-    <input id="teamCode" class="code-input" inputmode="numeric" autocomplete="one-time-code" placeholder="••••" maxlength="12">
-    <button class="primary wide" onclick="unlockTeam()">Öffnen</button>
+    <p>Willkommen. Hier findest du deinen Dienst, das Programm, Vorlagen und alle wichtigen Links für die Freizeit.</p>
+    <div class="gate-field">
+      <label for="teamCode">Team-Code</label>
+      <input id="teamCode" inputmode="numeric" autocomplete="one-time-code" maxlength="8" placeholder="••••">
+    </div>
+    <button class="btn btn-main gate-open" onclick="unlockTeam()">Öffnen</button>
     <div id="gateError" class="gate-error"></div>
   </div>
 </section>
 
-<div id="appRoot"><div id="appShell" class="hidden">
+<div id="appShell" class="hidden">
 <header class="topbar">
-  <div class="top-inner">
+  <div class="header-main">
     <img src="logo.webp" class="logo" alt="Gospel Youth">
-    <div class="quiet-link-wrap">
-      <a id="quietTop" class="quiet-link" target="_blank" href="https://www.bible.com/bible/157/MAT.1.SCH2000" aria-label="Bibel öffnen">
-        <img class="bible-icon-img" src="bible-icon.png" alt="" aria-hidden="true">
-        <span>Vergiss nicht Bibel zu lesen</span>
-      </a>
-    </div>
+
+    <a id="quietTop" class="quiet-top" target="_blank" rel="noopener">
+      <img src="bible-icon.png" alt="">
+      <span>Vergiss nicht deine stille Zeit</span>
+    </a>
+
     <div class="top-actions">
-      <a id="igTop" class="social-clean" target="_blank" aria-label="Instagram"><img src="instagram.png" alt=""></a>
-      <a id="ttTop" class="social-clean" target="_blank" aria-label="TikTok"><img src="tiktok.webp" alt=""></a>
-      <button class="adminText" onclick="openAdmin()">Admin</button>
-      <button class="theme" onclick="toggleTheme()" aria-label="Darstellung">◐</button>
+      <a id="igTop" class="icon-link" target="_blank" rel="noopener" aria-label="Instagram"><img src="instagram.png" alt=""></a>
+      <a id="ttTop" class="icon-link" target="_blank" rel="noopener" aria-label="TikTok"><img src="tiktok.webp" alt=""></a>
+      <button class="admin-link" onclick="openAdmin()">Admin</button>
+      <button class="theme-btn" onclick="toggleTheme()" aria-label="Darstellung wechseln">◐</button>
     </div>
   </div>
 
-  <nav class="mobile-top-nav">
+  <nav class="top-nav">
     <button data-view="home" class="active" onclick="showView('home')">Home</button>
     <button data-view="plan" onclick="showView('plan')">Plan</button>
     <button data-view="mine" onclick="showView('mine')">Meine Einsätze</button>
@@ -52,179 +53,178 @@
 </header>
 
 <main>
-<section id="view-home" class="view active">
-  <section class="home-hero">
-    <div class="kicker">Gospel Youth · Sommerfestival 2026</div>
-    <h1 id="homeTitle">Social Media Team</h1>
-  </section>
+  <div id="loadError" class="error-banner hidden"></div>
 
-  <section class="why-card">
-    <div class="kicker">Warum wir das machen</div>
-    <h2>Wir halten nicht einfach Content fest.</h2>
-    <p id="homeWelcome" class="why-copy">Wir wollen sichtbar machen, was Gott während dieser Freizeit tut – ehrlich, aufmerksam und so, dass Menschen ermutigt werden und Jesus im Mittelpunkt bleibt.</p>
-  </section>
+  <section id="view-home" class="view active">
+    <section class="home-intro">
+      <div class="eyebrow">Gospel Youth · Sommerfestival 2026</div>
+      <h1>Social Media Team</h1>
+    </section>
 
-  <section id="homeVerse" class="home-verse"></section>
+    <section class="why">
+      <div class="eyebrow">Warum wir das machen</div>
+      <h2>Wir halten nicht einfach Content fest.</h2>
+      <p id="motivationText">Wir wollen sichtbar machen, was Gott während dieser Freizeit tut – ehrlich, aufmerksam und so, dass Menschen ermutigt werden und Jesus im Mittelpunkt bleibt.</p>
+    </section>
 
-  <section class="quiet-home-card">
-    <div class="quiet-icon-box"><img src="bible-icon.png" alt=""></div>
-    <div>
-      <div class="kicker">Stille Zeit</div>
-      <h2>Vergiss beim Dienen nicht, selbst aufzutanken.</h2>
-      <p>Nutz deine freie Zeit, deine Kleingruppe und besonders den Morgen und Abend, um deinen Tag mit Gott zu beginnen und zu beenden. Und wenn dir etwas zu viel wird: Komm zu Ebbs. Du musst Dinge nicht allein tragen.</p>
-      <a id="homeBibleLink" class="primary inline" target="_blank" href="https://www.bible.com/bible/157/MAT.1.SCH2000">Bibel öffnen ↗</a>
+    <section id="verseCard" class="verse-card"></section>
+
+    <section class="quiet-card">
+      <div class="quiet-symbol"><img src="bible-icon.png" alt=""></div>
+      <div>
+        <div class="eyebrow">Stille Zeit</div>
+        <h2>Vergiss beim Dienen nicht, selbst aufzutanken.</h2>
+        <p>Nutz deine freie Zeit, deine Kleingruppe und besonders den Morgen und Abend, um deinen Tag mit Gott zu beginnen und zu beenden. Und wenn es dir zu viel wird: Komm zu Ebbs. Du musst Dinge nicht allein tragen.</p>
+        <a id="homeBible" class="btn btn-light" target="_blank" rel="noopener">Bibel öffnen ↗</a>
+      </div>
+    </section>
+
+    <section class="upload-block">
+      <div>
+        <div class="eyebrow">Datei-Upload</div>
+        <h2>Am Ende des Tages: alles hochladen.</h2>
+        <p>Alle fertigen und relevanten Dateien sollten am Ende des Tages gesichert sein. Nehmt euch bewusst Zeit dafür, damit nichts verloren geht und das Team am nächsten Tag sauber weiterarbeiten kann.</p>
+      </div>
+      <a id="homeDropbox" class="dropbox-card" target="_blank" rel="noopener">
+        <div class="dropbox-dots"><i></i><i></i><i></i><i></i></div>
+        <div><strong>Dropbox öffnen</strong><small>Dateien hochladen & sichern ↗</small></div>
+      </a>
+    </section>
+
+    <section id="leaderCard"></section>
+    <section id="announcement"></section>
+    <section id="homeToday"></section>
+
+    <section class="quick-section">
+      <div class="eyebrow">Schnellzugriff</div>
+      <div class="quick-grid">
+        <button onclick="showView('plan')"><span>01</span><strong>Tagesplan</strong><small>Programm & Aufgaben</small></button>
+        <button onclick="showView('mine')"><span>02</span><strong>Meine Einsätze</strong><small>Nur dein Dienst</small></button>
+        <button onclick="showView('templates')"><span>03</span><strong>Vorlagen</strong><small>Assets & Downloads</small></button>
+        <button onclick="showView('finished')"><span>04</span><strong>Fertiger Content</strong><small>Ergebnisse herunterladen</small></button>
+      </div>
+    </section>
+
+    <div class="home-links">
+      <a id="homeWhatsApp" target="_blank" rel="noopener">WhatsApp-Gruppe ↗</a>
+      <a id="homeInstagram" target="_blank" rel="noopener">Instagram ↗</a>
+      <a id="homeTikTok" target="_blank" rel="noopener">TikTok ↗</a>
     </div>
   </section>
 
-  <section class="upload-section">
-    <div class="upload-copy">
-      <div class="kicker">Datei-Upload</div>
-      <h2>Am Ende des Tages: alles sichern.</h2>
-      <p>Alle fertigen und relevanten Dateien sollten am Ende des Tages hochgeladen sein. Nehmt euch bewusst Zeit dafür, damit nichts verloren geht und das Team am nächsten Tag sauber weiterarbeiten kann.</p>
+  <section id="view-plan" class="view">
+    <div class="page-head"><div class="eyebrow">Tagesplan</div><h2>Plan</h2></div>
+    <div id="planDays" class="days"></div>
+    <div id="planPeriods" class="pills">
+      <button class="pill active" data-period="all" onclick="setPlanPeriod('all',this)">Ganzer Tag</button>
+      <button class="pill" data-period="morning" onclick="setPlanPeriod('morning',this)">Morgen</button>
+      <button class="pill" data-period="midday" onclick="setPlanPeriod('midday',this)">Mittag</button>
+      <button class="pill" data-period="evening" onclick="setPlanPeriod('evening',this)">Abend</button>
     </div>
-    <a id="homeDropbox" class="dropbox-tile" target="_blank">
-      <div class="dropbox-symbol">◆ ◆</div>
-      <div><strong>Dropbox öffnen</strong><small>Dateien hochladen & sichern ↗</small></div>
-    </a>
+    <section id="dayHero" class="day-hero"></section>
+    <section id="progress" class="progress-wrap"></section>
+    <div id="dayparts"></div>
   </section>
 
-  <section id="leaderCard" class="leader-card"></section>
-  <section id="homeAnnouncement"></section>
-  <section id="homeToday"></section>
-
-  <section class="quick-section">
-    <div class="kicker">Schnellzugriff</div>
-    <div class="quick-grid">
-      <button onclick="showView('plan')"><span>01</span><strong>Tagesplan</strong><small>Programm & Aufgaben</small></button>
-      <button onclick="showView('mine')"><span>02</span><strong>Meine Einsätze</strong><small>Nur dein Dienst</small></button>
-      <button onclick="showView('templates')"><span>03</span><strong>Vorlagen</strong><small>PNG/JPG Assets</small></button>
-      <button onclick="showView('finished')"><span>04</span><strong>Fertiger Content</strong><small>Downloads für den Tag</small></button>
-    </div>
+  <section id="view-mine" class="view">
+    <div class="page-head"><div class="eyebrow">Persönlicher Plan</div><h2>Meine Einsätze</h2><p>Wähle deinen Namen und danach den Tag.</p></div>
+    <div class="select-wrap"><select id="minePerson" onchange="setMinePerson(this.value)"></select></div>
+    <div id="mineDays" class="days"></div>
+    <div id="mineList" class="mine-list"></div>
+    <button id="calendarAll" class="btn btn-main hidden" onclick="exportMine()">Alle Einsätze in Kalender</button>
   </section>
 
-  <section class="link-row">
-    <a id="homeWhatsapp" target="_blank">WhatsApp-Gruppe ↗</a>
-    <a id="homeInstagram" target="_blank">Instagram ↗</a>
-    <a id="homeTikTok" target="_blank">TikTok ↗</a>
+  <section id="view-team" class="view">
+    <div class="page-head"><div class="eyebrow">Crew</div><h2>Team</h2><p>Kontakte und Rollen für schnelle Abstimmung.</p></div>
+    <a id="teamWhatsApp" class="btn btn-main team-wa" target="_blank" rel="noopener">WhatsApp-Gruppe öffnen ↗</a>
+    <div id="teamFilters" class="pills"></div>
+    <div id="teamGrid" class="team-grid"></div>
   </section>
-</section>
 
-<section id="view-plan" class="view">
-  <div class="pageHead"><div class="kicker">Tagesplan</div><h2>Plan</h2></div>
-  <div id="planDays" class="days"></div>
-  <div id="planPeriods" class="pills">
-    <button class="pill active" onclick="setPlanPeriod('all',this)">Ganzer Tag</button>
-    <button class="pill" onclick="setPlanPeriod('morning',this)">Morgen</button>
-    <button class="pill" onclick="setPlanPeriod('midday',this)">Mittag</button>
-    <button class="pill" onclick="setPlanPeriod('evening',this)">Abend</button>
-  </div>
-  <section id="dayHero" class="dayHero"></section>
-  <section id="progress" class="progressWrap"></section>
-  <div id="dayparts"></div>
-</section>
+  <section id="view-templates" class="view">
+    <div class="page-head"><div class="eyebrow">Assets</div><h2>Vorlagen</h2><p>Vorlagen öffnen und herunterladen.</p></div>
+    <div id="templateFilters" class="pills"></div>
+    <div id="templateGrid" class="asset-grid"></div>
+  </section>
 
-<section id="view-mine" class="view">
-  <div class="pageHead"><div class="kicker">Persönlicher Plan</div><h2>Meine Einsätze</h2><p>Wähle deinen Namen und danach den Tag.</p></div>
-  <div class="selector"><select id="minePerson" onchange="setMinePerson(this.value)"></select></div>
-  <div id="mineDays" class="days"></div>
-  <div id="mineList"></div>
-  <button id="calendarAll" class="primary hidden" onclick="exportMine()">Alle Einsätze in Kalender</button>
-</section>
+  <section id="view-finished" class="view">
+    <div class="page-head"><div class="eyebrow">Output</div><h2>Fertiger Content</h2><p>Bearbeitete Bilder, Predigtnotizen, Bibelverse und weitere fertige Dateien.</p></div>
+    <div id="finishedDays" class="days"></div>
+    <div id="finishedFilters" class="pills"></div>
+    <div id="finishedGrid" class="asset-grid"></div>
+  </section>
 
-<section id="view-team" class="view">
-  <div class="pageHead"><div class="kicker">Crew</div><h2>Team</h2><p>Kontakte und Rollen für schnelle Abstimmung.</p></div>
-  <a id="teamWhatsapp" class="primary inline team-wa" target="_blank">WhatsApp-Gruppe öffnen ↗</a>
-  <div id="teamFilters" class="pills"></div>
-  <div id="teamGrid" class="teamGrid"></div>
-</section>
-
-<section id="view-templates" class="view">
-  <div class="pageHead"><div class="kicker">Assets</div><h2>Vorlagen</h2><p>Story-, Post- und Reel-Vorlagen zum Öffnen und Herunterladen.</p></div>
-  <div id="templateFilters" class="pills"></div>
-  <div id="templateGrid" class="templateGrid"></div>
-</section>
-
-<section id="view-finished" class="view">
-  <div class="pageHead"><div class="kicker">Output</div><h2>Fertiger Content</h2><p>Bearbeitete Bilder, Predigtnotizen, Bibelverse und weitere fertige Dateien.</p></div>
-  <div id="finishedDays" class="days"></div>
-  <div id="finishedFilters" class="pills"></div>
-  <div id="finishedGrid" class="templateGrid"></div>
-</section>
-
-<footer>Social Media Contentplan · Created by Ebenezer Agonafer</footer>
+  <footer>Social Media Contentplan · Created by Ebenezer Agonafer</footer>
 </main>
-</div></div>
+</div>
 
-<div id="admin" class="overlay hidden">
-  <div class="adminShell">
-    <header class="adminHeader">
-      <div><div class="kicker">Admin</div><h2>Sommerfestival Social Media</h2></div>
-      <button class="x" onclick="closeAdmin()">×</button>
+<div id="adminOverlay" class="overlay hidden">
+  <div class="admin-shell">
+    <header class="admin-head">
+      <div><div class="eyebrow">Admin</div><h2>Sommerfestival Social Media</h2></div>
+      <button class="close" onclick="closeAdmin()">×</button>
     </header>
 
-    <div id="login" class="login">
-      <h3>Admin</h3>
-      <input id="email" type="email" placeholder="E-Mail">
-      <input id="password" type="password" placeholder="Passwort">
-      <button class="primary" onclick="login()">Anmelden</button>
-      <small id="loginMsg"></small>
+    <div id="adminLogin" class="admin-login">
+      <h3>Anmelden</h3>
+      <input id="adminEmailInput" type="email" placeholder="E-Mail">
+      <input id="adminPasswordInput" type="password" placeholder="Passwort">
+      <button class="btn btn-main" onclick="adminLogin()">Anmelden</button>
+      <small id="adminLoginMsg"></small>
     </div>
 
     <div id="adminApp" class="hidden">
-      <div class="adminBar"><span id="adminEmail"></span><button class="ghost" onclick="logout()">Abmelden</button></div>
+      <div class="admin-user"><span id="adminEmail"></span><button class="btn btn-ghost" onclick="adminLogout()">Abmelden</button></div>
 
-      <div class="admin-main-tabs">
-        <button class="admin-main active" onclick="showAdminMain('day',this)">Tagesansicht</button>
-        <button class="admin-main" onclick="showAdminMain('home',this)">Home & Links</button>
-        <button class="admin-main" onclick="showAdminMain('assets',this)">Assets</button>
-        <button class="admin-main" onclick="showAdminMain('team',this)">Team</button>
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="showAdminTab('day',this)">Tagesansicht</button>
+        <button class="admin-tab" onclick="showAdminTab('home',this)">Home & Links</button>
+        <button class="admin-tab" onclick="showAdminTab('assets',this)">Assets</button>
+        <button class="admin-tab" onclick="showAdminTab('team',this)">Team</button>
       </div>
 
-      <section id="admin-main-day" class="admin-main-panel active">
-        <div class="section-label">Tag bearbeiten</div>
+      <section id="admin-day" class="admin-panel active">
+        <div class="eyebrow">Tag bearbeiten</div>
         <div id="adminDays" class="days"></div>
-        <div class="adminPreviewHead">
-          <div><div class="kicker">Vorschau</div><h3 id="adminDayTitle"></h3></div>
-          <button class="primary" onclick="editDay()">Tag & Thema bearbeiten</button>
-        </div>
+        <div class="admin-section-head"><div><div class="eyebrow">Vorschau</div><h3 id="adminDayTitle"></h3></div><button class="btn btn-main" onclick="openForm('day',selectedDate)">Tag & Thema</button></div>
         <div id="adminProgress"></div>
         <div id="adminDayparts"></div>
       </section>
 
-      <section id="admin-main-home" class="admin-main-panel">
-        <div class="adminPreviewHead"><div><h3>Home & Links</h3><p>Begrüßung, Ermutigung, Bibel-Link, WhatsApp, Dropbox und Social Media.</p></div><button class="primary" onclick="openForm('settings')">Bearbeiten</button></div>
+      <section id="admin-home" class="admin-panel">
+        <div class="admin-section-head"><div><h3>Home & Links</h3><p>Ermutigung, Bibelvers, WhatsApp, Dropbox und Social Media.</p></div><button class="btn btn-main" onclick="openForm('settings')">Bearbeiten</button></div>
         <div id="adminHomePreview"></div>
       </section>
 
-      <section id="admin-main-assets" class="admin-main-panel">
-        <div class="adminPreviewHead"><div><h3>Vorlagen</h3></div><button class="primary" onclick="openForm('template')">+ Vorlage</button></div>
-        <div id="adminTemplates" class="templateGrid"></div>
-        <div class="adminPreviewHead finished-admin-head"><div><h3>Fertiger Content</h3></div><button class="primary" onclick="openForm('finished')">+ Fertiger Content</button></div>
-        <div id="adminFinished" class="templateGrid"></div>
+      <section id="admin-assets" class="admin-panel">
+        <div class="admin-section-head"><div><h3>Vorlagen</h3></div><button class="btn btn-main" onclick="openForm('template')">+ Vorlage</button></div>
+        <div id="adminTemplates" class="asset-grid"></div>
+        <div class="admin-section-head assets-gap"><div><h3>Fertiger Content</h3></div><button class="btn btn-main" onclick="openForm('finished')">+ Fertiger Content</button></div>
+        <div id="adminFinished" class="asset-grid"></div>
       </section>
 
-      <section id="admin-main-team" class="admin-main-panel">
-        <div class="adminPreviewHead"><div><h3>Team</h3></div><button class="primary" onclick="openForm('member')">+ Person</button></div>
-        <div id="adminTeam" class="teamGrid"></div>
+      <section id="admin-team" class="admin-panel">
+        <div class="admin-section-head"><div><h3>Team</h3></div><button class="btn btn-main" onclick="openForm('member')">+ Person</button></div>
+        <div id="adminTeam" class="team-grid"></div>
       </section>
     </div>
   </div>
 </div>
 
-<div id="formModal" class="overlay hidden">
+<div id="formOverlay" class="overlay hidden">
   <div class="sheet">
-    <header class="sheetHead"><h3 id="formTitle"></h3><button class="x" onclick="closeForm()">×</button></header>
+    <header class="sheet-head"><h3 id="formTitle"></h3><button class="close" onclick="closeForm()">×</button></header>
     <div id="formBody"></div>
-    <div id="formError" class="error hidden"></div>
-    <div class="formActions"><button class="ghost" onclick="closeForm()">Abbrechen</button><button id="save" class="primary" onclick="saveForm()">Speichern</button></div>
+    <div id="formError" class="form-error hidden"></div>
+    <div class="form-actions"><button class="btn btn-ghost" onclick="closeForm()">Abbrechen</button><button id="saveFormBtn" class="btn btn-main" onclick="saveForm()">Speichern</button></div>
   </div>
 </div>
 
 <div id="gallery" class="gallery hidden" onclick="closeGallery()">
-  <button class="x galleryX" onclick="closeGallery()">×</button>
-  <button class="galleryPrev" onclick="event.stopPropagation();galleryStep(-1)">‹</button>
-  <div class="galleryInner" onclick="event.stopPropagation()"><img id="galleryImg"><p id="galleryCaption"></p></div>
-  <button class="galleryNext" onclick="event.stopPropagation();galleryStep(1)">›</button>
+  <button class="gallery-close" onclick="closeGallery()">×</button>
+  <button class="gallery-prev" onclick="event.stopPropagation();galleryStep(-1)">‹</button>
+  <div class="gallery-inner" onclick="event.stopPropagation()"><img id="galleryImage"><p id="galleryCaption"></p></div>
+  <button class="gallery-next" onclick="event.stopPropagation();galleryStep(1)">›</button>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
