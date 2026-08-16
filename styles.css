@@ -74,3 +74,63 @@ html[data-theme=dark] .quietV2 img{filter:invert(1)}
 
 .waPersonButtons{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
 .whatsappPrep{line-height:1.2}
+
+/* === V11.8 final polish === */
+.whyCard{
+  margin:12px 0 28px;
+  padding:clamp(28px,5vw,56px);
+  border:1px solid var(--line);
+  border-radius:30px;
+  background:color-mix(in srgb,var(--soft) 72%,var(--bg));
+  text-align:center;
+}
+.whyCard .missionStatement{padding:0;max-width:900px;margin:0 auto}
+.whyCard .missionStatement h2{
+  font-size:clamp(34px,5.2vw,64px);
+  line-height:1.02;
+  max-width:820px;
+  margin:14px auto 18px;
+}
+.whyCard .missionStatement p{max-width:720px;margin:0 auto;font-size:14px}
+.whyDivider{width:56px;height:1px;background:var(--line);margin:32px auto}
+.whyCard .encouragementVerse{padding:0}
+.whyCard .encouragementVerse blockquote{font-size:clamp(23px,3.3vw,38px)}
+
+.importantInfo{
+  display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start;
+  background:rgba(255,69,58,.10);border:1px solid rgba(255,69,58,.30);
+  color:#d92d20;border-radius:18px;padding:14px 16px;margin-bottom:22px
+}
+html[data-theme=dark] .importantInfo{color:#ff6b63;background:rgba(255,69,58,.11)}
+.importantBang{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#ff453a;color:#fff;font-weight:900}
+.importantInfo strong{font-size:12px}.importantInfo p{font-size:11px;color:inherit;margin:4px 0 0}
+
+.programReminder{margin:16px 0 2px}
+.programDirectContent{margin-top:14px}
+
+.myServicesPanel{padding:12px 0 20px}
+.myServicesIntro{max-width:620px;margin-bottom:28px}
+.myServicesIntro h2{font-size:32px;margin:7px 0}
+.myServicesIntro p{font-size:12px}
+#planMinePerson{margin-top:10px}
+.calendarOne{
+  margin-top:10px;border:0;border-radius:999px;padding:8px 10px;
+  background:var(--card);color:var(--cardfg);font-size:9px;font-weight:800
+}
+.mineServiceMain{min-width:0}
+
+.homeExternal{margin-top:28px!important;gap:12px!important}
+.homeExternal a{
+  display:flex;align-items:center;justify-content:flex-start;gap:10px;
+  min-height:56px;padding:13px 15px!important;border:1px solid var(--line)
+}
+.homeExternal a img{width:22px;height:22px;object-fit:contain;flex:0 0 22px}
+.homeExternal a span{font-weight:750;font-size:11px}
+html[data-theme=dark] .homeExternal #waHome img{filter:none}
+
+@media(max-width:700px){
+  .whyCard{border-radius:24px;padding:30px 20px}
+  .whyCard .missionStatement h2{font-size:36px}
+  .whyDivider{margin:26px auto}
+  .homeExternal{grid-template-columns:1fr!important}
+}

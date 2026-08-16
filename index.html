@@ -26,7 +26,6 @@
   <nav class="mainNav">
     <button data-view="home" class="active" onclick="showView('home')">Home</button>
     <button data-view="plan" onclick="showView('plan')">Plan</button>
-    <button data-view="mine" onclick="showView('mine')">Meine Einsätze</button>
     <button data-view="team" onclick="showView('team')">Team</button>
     <button data-view="templates" onclick="showView('templates')">Vorlagen</button><button data-view="guidelines" onclick="showView('guidelines')">Vorgaben & Richtlinien</button><button data-view="ideas" onclick="showView('ideas')">Reel Inspiration</button>
     <button data-view="finished" onclick="showView('finished')">Fertiger Content</button>
@@ -41,15 +40,17 @@
     <p id="subtitle" class="lead">Heaven Now</p>
   </section>
 
-  <section class="missionStatement">
-    <div class="kicker">Warum wir das machen</div>
-    <h2 id="motivationTitle">Wir halten nicht einfach Content fest.</h2>
-    <p id="motivationText">Wir wollen sichtbar machen, was Gott während dieser Freizeit tut – ehrlich, aufmerksam und so, dass Menschen ermutigt werden und Jesus im Mittelpunkt bleibt.</p>
-  </section>
-
-  <section class="encouragementVerse">
-    <blockquote id="homeVerse"></blockquote>
-    <div id="homeVerseRef" class="verseRef"></div>
+  <section class="whyCard">
+    <div class="missionStatement">
+      <div class="kicker">Warum wir das machen</div>
+      <h2 id="motivationTitle">Wir halten nicht einfach Content fest.</h2>
+      <p id="motivationText">Wir wollen sichtbar machen, was Gott während dieser Freizeit tut – ehrlich, aufmerksam und so, dass Menschen ermutigt werden und Jesus im Mittelpunkt bleibt.</p>
+    </div>
+    <div class="whyDivider"></div>
+    <div class="encouragementVerse">
+      <blockquote id="homeVerse"></blockquote>
+      <div id="homeVerseRef" class="verseRef"></div>
+    </div>
   </section>
 
   <section class="quietCardNew">
@@ -75,27 +76,24 @@
   </section>
 
   <section id="leaderHome"></section>
-  <div id="announcement"></div>
-  <section id="homeToday" class="todayCard"></section>
 
   <section class="homeQuickSection">
     <div class="kicker">Schnellzugriff</div>
     <section class="homeSchedule"><div class="kicker">TEAM</div><h3>Wochenplan Sommerfestival</h3><div id="homeScheduleImage"></div></section><div class="quickGrid">
       <button onclick="showView('plan')"><b>Tagesplan</b><span>Programm & Aufgaben →</span></button>
-      <button onclick="showView('mine')"><b>Meine Einsätze</b><span>Deine Aufgaben →</span></button>
+      <button onclick="openMyServices()"><b>Meine Dienste</b><span>Deine Einteilungen →</span></button>
       <button onclick="showView('finished')"><b>Fertiger Content</b><span>Downloads & Ergebnisse →</span></button>
       <button onclick="showView('templates')"><b>Vorlagen</b><span>Assets fürs Team →</span></button><button onclick="showView('guidelines')"><b>Vorgaben & Richtlinien</b><span>Style, Video, Foto & Regeln →</span></button><button onclick="showView('ideas')"><b>Reel Inspiration</b><span>Video-Ideen fürs Team →</span></button>
     </div>
   </section>
 
   <div class="externalGrid homeExternal">
-    <a id="waHome" target="_blank" rel="noopener">WhatsApp-Gruppe ↗</a>
-    <a id="igHome" target="_blank" rel="noopener">Instagram ↗</a>
-    <a id="ttHome" target="_blank" rel="noopener">TikTok ↗</a>
+    <a id="waHome" target="_blank" rel="noopener"><img src="whatsapp.png" alt=""> <span>WhatsApp-Gruppe</span></a>
+    <a id="igHome" target="_blank" rel="noopener"><img src="instagram.png" alt=""> <span>Instagram</span></a>
+    <a id="ttHome" target="_blank" rel="noopener"><img src="tiktok.webp" alt=""> <span>TikTok</span></a>
   </div>
 </section>
-<section id="view-plan" class="view"><div class="pageHead"><div class="kicker">Content & Programm</div><h2>Tagesplan</h2><p>Programmpunkte, Unterpunkte und alle Content-Aufgaben an einem Ort.</p></div><div class="section-label">Tag</div><div id="days" class="days"></div><div id="planPartFilters" class="pills"></div><section id="dayHero" class="dayHero"></section><section id="progress" class="progressWrap"></section><div id="dayparts"></div></section>
-<section id="view-mine" class="view"><div class="pageHead"><div class="kicker">Persönlicher Plan</div><h2>Meine Einsätze</h2><p>Person und Tag auswählen.</p></div><div class="selector"><select id="minePerson" onchange="setMinePerson(this.value)"></select></div><div id="mineDays" class="days"></div><div id="mineList"></div><button id="calendarAll" class="primary hidden" onclick="exportMine()">Alle Einsätze in Kalender</button></section>
+<section id="view-plan" class="view"><div class="pageHead"><div class="kicker">Content & Programm</div><h2>Plan</h2><p>Programmpunkte, Content-Aufgaben und deine Dienste an einem Ort.</p></div><div id="planDayLabel" class="section-label">Tag</div><div id="days" class="days"></div><div id="planPartFilters" class="pills"></div><section id="dayHero" class="dayHero"></section><section id="progress" class="progressWrap"></section><div id="dayparts"></div></section>
 <section id="view-team" class="view"><div class="pageHead"><div class="kicker">Crew</div><h2>Team</h2><p>Alle Mitarbeiter und ihre Bereiche.</p><a id="waTeam" class="primary inline" target="_blank">WhatsApp-Gruppe öffnen ↗</a></div><div id="teamFilters" class="pills"></div><div id="teamGrid" class="teamGrid"></div></section>
 <section id="view-templates" class="view"><div class="pageHead"><div class="kicker">Assets</div><h2>Vorlagen</h2><p>Story-, Post- und Reel-Vorlagen.</p></div><div id="templateFilters" class="pills"></div><div id="templateGrid" class="templateGrid"></div></section>
 <section id="view-ideas" class="view">
