@@ -165,3 +165,33 @@ html[data-theme=dark] .homeExternal #waHome img{filter:none}
 @media(max-width:700px){.socialReelPreview{width:min(210px,72vw)}}
 /* utility links sit with the logo on desktop instead of floating to the right */
 @media(min-width:760px){.top-actions{margin-left:8px!important;margin-right:auto!important}.top-inner{justify-content:flex-start!important}}
+
+/* === V11.12 === */
+.planMineRow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:-8px 0 14px}
+#planPartFilters{padding-top:0}
+.planMineRow .mineToggle{background:var(--soft);color:var(--fg)}
+.planMineRow .mineToggle.active{background:var(--card);color:var(--cardfg)}
+.planMineRow .personChange{border:0;border-radius:999px;background:var(--soft);color:var(--fg);padding:9px 12px;font-size:10px;font-weight:750}
+
+.reelPreview{width:min(180px,44vw);aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:transparent;margin:12px 0}
+.reelPreview video{width:100%;height:100%;display:block;object-fit:cover;background:transparent;border:0;outline:0}
+.reelPreviewTodo{width:min(150px,40vw)}
+.ideaCard{overflow:visible}
+.ideaCard video{background:transparent!important}
+.videoBox{background:transparent!important}
+
+.socialPreviewMini{display:flex;align-items:center;gap:10px;width:min(230px,100%);padding:12px;border:1px solid var(--line);border-radius:16px;background:var(--soft);margin-top:9px}
+.socialPreviewMini img{width:28px;height:28px;object-fit:contain}
+.socialPreviewMini strong,.socialPreviewMini span{display:block}.socialPreviewMini strong{font-size:11px}.socialPreviewMini span{font-size:9px;color:var(--muted);margin-top:2px}
+
+@media(min-width:760px){
+  .top-inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;align-items:center}
+  .top-actions{margin-left:0;justify-self:end}
+  .mainNav{max-width:1180px;margin:0 auto}
+}
+@media(max-width:700px){
+  .planMineRow{margin-top:-4px;margin-bottom:12px}
+  .planMineRow .mineToggle,.planMineRow .personChange{flex:0 0 auto}
+  .reelPreview{width:128px}
+  .reelPreviewTodo{width:116px}
+}
